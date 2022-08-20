@@ -1,0 +1,103 @@
+<template>
+  <div class="content-card">
+    <div class="content-image" @click="detail">
+      <img :src="item.url" alt="img" width="100%">
+    </div>
+    <div class="content-title">
+      {{ item.title }}
+    </div>
+    <div class="click-box">
+      <div class="like-box">
+        <div class="like-icon">
+          <span class="material-symbols-outlined">
+            thumb_up
+          </span>
+        </div>
+        <div class="like-no">
+          {{ item.likeNum }}
+        </div>
+      </div>
+      <div class="scrap-box">
+        <div class="scrap-icon">
+          <span class="material-symbols-outlined">
+            bookmarks
+          </span>
+        </div>
+        <div class="scrap-no">
+          {{ item.scrapNum }}
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+export default {
+  props:{
+    item:{
+      type: Object,
+      default: () => ({}),
+      url:{
+        type: String,
+        default: () => ('')
+      },
+      title:{
+        type: String,
+        default: () => ('')
+      },
+      likeNum:{
+        type: Number,
+        default: () => (0)
+      },
+      scrapNum:{
+        type: Number,
+        default: () => (0)
+      }
+    }
+  },
+  methods:{
+    detail(){
+      const id = "531326312"
+      this.$router.push(`/content/${id}`)
+    }
+  }
+}
+</script>
+
+<style lang="scss" scoped>
+.content-card{
+  padding: 15px;
+  .content-image{
+    width: 210px;
+    height: 210px;
+    background: black;
+  }
+  .content-title{
+    padding: 5px;
+  }
+  .click-box{
+    display: flex;
+    padding: 5px;
+    .like-box{
+      display: flex;
+      width: 50%;
+      .like-no{
+        margin-left: 10px;
+        margin-top: 3px;
+      }
+    }
+    .scrap-box{
+      display: flex;
+      width: 50%;
+      .scrap-no{
+        margin-left: 10px;
+        margin-top: 3px;
+      }
+    }
+  }
+}
+
+.black{
+  color: black;
+}
+</style>

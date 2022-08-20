@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <div class="test">
+    <div>
       <AppHeader />
       <router-view/>
       <AppFooter />
@@ -26,6 +26,10 @@ export default {
 
 <style lang="scss">
 
+body{
+  font-family: 'Nanum Gothic', sans-serif;
+}
+
 
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
@@ -33,8 +37,7 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   display: flex;
   justify-content: center;
-  // height: 100vh;
-
+  box-sizing: border-box;
   background: rgba(0,0,0,0);
 }
 </style>
