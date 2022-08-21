@@ -1,13 +1,16 @@
 <template>
     <div class="main-container">
-        Main
+        <AppSwiper />
     </div>
 </template>
 
 <script>
-    export default {
-        
-    }
+import AppSwiper from '@/components/common/AppSwiper.vue';
+export default {
+  components:{
+    AppSwiper
+  }
+}
 </script>
 
 <style lang="scss" scoped>

@@ -1,5 +1,5 @@
 <template>
-  <div class="header-container">
+  <div class="header-container" v-if="true">
     <div class="header">
       <div class="logo">
         <img src="../../assets/kurly-logo.jpg" alt="logo" width="50px">

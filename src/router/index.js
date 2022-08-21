@@ -54,6 +54,21 @@ const routes = [
     name: 'detail',
     component: () => import('@/components/contents/ContentDetail.vue')
   },
+  {
+    path: '/user-page/:id',
+    name: 'userPage',
+    component: () => import('@/components/user/UserPage.vue')
+  },
+  // {
+  //   path: '/user-content/:id',
+  //   name: 'myScrap',
+  //   component: () => import('@/components/mypage/MyScrap.vue')
+  // },
+  {
+    path: '/my-scrap/:id',
+    name: 'myScrap',
+    component: () => import('@/components/mypage/MyScrap.vue')
+  },
 ]
 
 const router = new VueRouter({

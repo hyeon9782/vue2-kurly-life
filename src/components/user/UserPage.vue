@@ -1,0 +1,182 @@
+<template>
+  <div class="user-container">
+    <div class="user-header">
+      <span class="material-symbols-outlined back">
+        arrow_back_ios
+      </span>
+    </div>
+    <div class="user-box">
+      <div class="user-content">  
+        <div class="user-img">
+          <img :src="url" alt="img" width="100%">
+        </div>
+        <div class="user-info">
+          <div class="name-box">
+            <div class="nickname">
+              {{ nickname }}
+            </div>
+            <div class="follow-btn" v-if="myId != userId">
+              <div class="plus-icon">
+                <span class="material-symbols-outlined">
+                  add
+                </span>
+              </div>
+              <div class="follow-text">
+                팔로우
+              </div>
+            </div>
+          </div>
+          <div class="click-box">
+            <div class="like">
+              <span class="material-symbols-outlined like-icon">
+                favorite
+              </span>
+              <div class="like-num">
+                {{ likeNum }}
+              </div>
+            </div>
+            <div class="scrap">
+              <span class="material-symbols-outlined scrap-icon">
+                bookmarks
+              </span>
+              <div class="scrap-num">
+                {{ scrapNum }}
+              </div>
+            </div>
+            <div class="follow">
+              <span class="material-symbols-outlined follow-icon">
+                groups
+              </span>
+              <div class="follow-num">
+                {{ followNum }}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="introduce">
+        {{ introduce }}
+      </div>
+    </div>
+    <UserContent />
+  </div>
+</template>
+
+<script>
+import UserContent from '@/components/user/UserContent.vue';
+export default {
+  components:{
+    UserContent
+  },
+  data(){
+    return{
+      likeNum: 9,
+      scrapNum: 5,
+      followNum: 7,
+      userId: "32",
+      myId: "32",
+      nickname: "노른자없는계란",
+      introduce: "자기소개/평소 라이프 스타일에 대한 내용을 입력하세요. 자기소개/평소 라이프 스타일에 대한 내용을 입력하세요." ,
+      url: "",
+
+    }
+  }
+}
+</script>
+
+<style lang="scss" scoped>
+.user-container{
+  width: 480px;
+  margin-top:102px;
+  .user-header{
+    padding: 10px;
+    .back{
+      font-size: 30px;
+      color: rgb(190, 190, 190);
+    }
+  }
+  .user-box{
+    .user-content{
+      display: flex;
+      padding: 10px;
+      .user-img{
+        width: 70px;
+        height: 70px;
+        border-radius: 50%;
+        background: gray;
+        width: 15%;
+      }
+      .user-info{
+        width: 85%;
+        padding-left: 15px;
+        .name-box{
+          display: flex;
+          justify-content: space-between;
+          .nickname{
+            font-size:28px;
+          }
+          .follow-btn{
+            display: flex;
+            background: rgb(142, 68, 173);
+            border-radius: 30px;
+            padding: 10px;
+            color: white;
+            
+          }
+        }
+      }
+      .click-box{
+        display: flex;
+        padding: 10px 10px 10px 0;
+        
+        .like{
+          display: flex;
+
+          .like-icon{
+            font-size: 30px;
+          }
+          .like-num{
+            margin-left: 12px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 24px;
+          }
+        }
+        .scrap{
+          display: flex;
+          margin-left: 10px;
+          .scrap-icon{
+            font-size: 30px;
+          }
+          .scrap-num{
+            margin-left: 12px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 24px;
+          }
+        } 
+        .follow{
+          display: flex;
+          margin-left: 15px;
+          .follow-icon{
+            font-size: 34px;
+          }
+          .follow-num{
+            margin-left: 12px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 24px;
+          }
+        }
+      }
+    }
+    .introduce{
+      padding: 10px;
+      color: rgb(51, 51, 51);
+    }
+  }
+}
+</style>
