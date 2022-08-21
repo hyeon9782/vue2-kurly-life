@@ -10,7 +10,7 @@
         {{ i.icon }}
       </span>
     </router-link>
-    <div class="write">
+    <div class="write" @click="write">
       <span class="material-symbols-outlined">
         edit_square
       </span>
@@ -36,6 +36,11 @@ export default {
           href: "/mypage"
         },
       ]
+    }
+  },
+  methods:{
+    write(){
+      
     }
   }
 }
