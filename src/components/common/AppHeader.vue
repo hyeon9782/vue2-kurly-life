@@ -1,12 +1,12 @@
 <template>
   <div class="header-container" v-if="true">
     <div class="header">
-      <div class="logo">
+      <div class="logo" @click="home">
         <img src="../../assets/kurly-logo.jpg" alt="logo" width="50px">
       </div>
       <div class="header-select">
-        <div v-for="i in select" :key="i.id" class="select-item">
-          {{ i.text }}
+        <div v-for="(i, idx) in select" :key="idx" class="select-item" :class="{select: i == '컬리의 일상'}">
+          {{ i }}
         </div>
       </div>
       <div class="header-icon">
@@ -34,23 +34,16 @@ export default {
   },
   data(){
     return{
-      select: [
-        {
-          text: "마켓컬리",
-          link: "/",
-          id: 0
-        },
-        {
-          text: "뷰티컬리",
-          link: "/",
-          id: 1,
-        },
-        {
-          text: "컬리의 일상",
-          link: "/",
-          id: 2
-        }
-      ]
+      select: [ "마켓컬리", "뷰티컬리", "컬리의 일상"],
+      changeColor: -1
+    }
+  },
+  methods:{
+    home(){
+      this.$router.push("/")
+    },
+    change(index){
+      this.changeColor = index;
     }
   }
 }
@@ -93,5 +86,10 @@ export default {
         }
       }
     }
+}
+
+.select{
+  background: white;
+  color: rgb(97, 2, 129);
 }
 </style>

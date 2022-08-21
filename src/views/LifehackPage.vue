@@ -21,6 +21,48 @@ export default {
     ContentTheme,
     ContentCard,
     NoData
+  },
+  data(){
+    return{
+      itemList: [
+        {
+          url: "",
+          title: "테스트 제목입니다.",
+          likeNum: 3,
+          scrapNum: 6,
+        },
+        {
+          url: "",
+          title: "테스트 제목입니다.",
+          likeNum: 3,
+          scrapNum: 6,
+        },
+        {
+          url: "",
+          title: "테스트 제목입니다.",
+          likeNum: 3,
+          scrapNum: 6,
+        },
+        {
+          url: "",
+          title: "테스트 제목입니다.",
+          likeNum: 3,
+          scrapNum: 6,
+        },
+        {
+          url: "",
+          title: "테스트 제목입니다.",
+          likeNum: 3,
+          scrapNum: 6,
+        },
+        {
+          url: "",
+          title: "테스트 제목입니다.",
+          likeNum: 3,
+          scrapNum: 6,
+        },
+      ]
+    }
   }
 }
 </script>

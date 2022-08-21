@@ -46,9 +46,22 @@ export default {
     display: flex;
     align-items: center;
     justify-content: space-around;
+    border-bottom: 1px solid gray;
     .nav-item{
+        width: 50px;
+        height: 34px;
+        display: flex;
+        align-items: end;
+        justify-content: center;
+        text-align: center;
         text-decoration: none;
         color: black;
+        padding-bottom: 10px;
+        border-bottom: 6px solid rgb(97, 2, 129);
     }
+}
+
+.select{
+    border-bottom: 6px solid rgb(97, 2, 129);
 }
 </style>

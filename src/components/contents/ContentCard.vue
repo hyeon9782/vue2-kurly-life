@@ -1,7 +1,7 @@
 <template>
   <div class="content-card">
     <div class="content-image" @click="detail">
-      <img :src="item.url" alt="img" width="100%">
+      <AppImage :img="item.url" height="210"/>
     </div>
     <div class="content-title">
       {{ item.title }}
@@ -32,7 +32,11 @@
 </template>
 
 <script>
+import AppImage from '@/components/common/AppImage.vue';
 export default {
+  components:{
+    AppImage
+  },
   props:{
     item:{
       type: Object,
@@ -70,7 +74,6 @@ export default {
   .content-image{
     width: 210px;
     height: 210px;
-    background: black;
   }
   .content-title{
     padding: 5px;

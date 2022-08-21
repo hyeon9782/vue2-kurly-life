@@ -1,20 +1,8 @@
 <template>
   <div class="following-card">
-    <div class="user-box">
-      <div class="user-img-box">
-        <img :src="item.img" alt="img">
-      </div>
-      <div class="user-info">
-        <div class="nickname">
-          {{ item.nickname }}
-        </div>
-        <div class="upload-date">
-          {{ item.uploadDate }}
-        </div>
-      </div>
-    </div>
+    <UserBox />
     <div class="thumbnail-box" @click="detail">
-      <img :src="item.thumbnail" alt="img" width="100%">
+      <AppImage :img="item.thumbnail"/>
     </div>
     <div class="click-box">
       <div class="like-box">
@@ -48,7 +36,13 @@
 </template>
 
 <script>
+import AppImage from '@/components/common/AppImage.vue';
+import UserBox from '@/components/user/UserBox.vue';
 export default {
+  components:{
+    UserBox,
+    AppImage
+  },
   props:{
     item:{
       img:{
@@ -97,29 +91,8 @@ export default {
 <style lang="scss" scoped>
 .following-card{
   padding: 10px;
-  .user-box{
-    display: flex;
-    padding: 10px;
-    .user-img-box{
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-      background: red;
-      // margin: 10px;
-    }
-    .user-info{
-      .nickname{
-        padding: 5px 5px 5px 5px;
-      }
-      .upload-date{
-        padding-left: 5px;
-      }
-    }
-  }
   .thumbnail-box{
-    width: 450px;
-    height: 450px;
-    background: green;
+    height: 460px;
   }
   .click-box{
     display: flex;

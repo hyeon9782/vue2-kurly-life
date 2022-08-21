@@ -40,7 +40,7 @@ export default {
   },
   methods:{
     write(){
-      
+      this.$router.push("/write")
     }
   }
 }
