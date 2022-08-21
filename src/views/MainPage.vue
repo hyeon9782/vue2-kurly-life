@@ -1,14 +1,13 @@
 <template>
     <div class="main-container">
-      <div class="event-slide">
-
-      </div>
+      <EventSlide />
       <ContentSlide  v-for="slide in slideList" :key="slide.category" :slide="slide"/>
     </div>
 </template>
 
 <script>
 import ContentSlide from '@/components/contents/ContentSlide.vue';
+import EventSlide from '@/components/event/EventSlide.vue';
 export default {
   data(){
     return{
@@ -42,7 +41,8 @@ export default {
     }
   },
   components:{
-    ContentSlide
+    ContentSlide,
+    EventSlide
   }
 }
 </script>

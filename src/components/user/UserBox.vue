@@ -1,5 +1,5 @@
 <template>
-  <div class="user-box">
+  <div class="user-box" @click="movePage(userId)">
     <div class="user-img-box">
       <img :src="img" alt="img">
     </div>
@@ -28,6 +28,15 @@ export default {
     uploadDate: {
       type: String,
       default: () => ("2022-08-20")
+    },
+    userId:{
+      type: String,
+      default: () => ("3123")
+    }
+  },
+  methods:{
+    movePage(userId){
+      this.$router.push(`/user-page/${userId}`)
     }
   }
 }

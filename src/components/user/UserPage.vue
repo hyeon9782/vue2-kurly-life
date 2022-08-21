@@ -15,16 +15,7 @@
             <div class="nickname">
               {{ nickname }}
             </div>
-            <div class="follow-btn" v-if="myId != userId">
-              <div class="plus-icon">
-                <span class="material-symbols-outlined">
-                  add
-                </span>
-              </div>
-              <div class="follow-text">
-                팔로우
-              </div>
-            </div>
+            <FollowBtn v-if="userId == myId" />
           </div>
           <div class="click-box">
             <div class="like">
@@ -64,9 +55,11 @@
 
 <script>
 import UserContent from '@/components/user/UserContent.vue';
+import FollowBtn from '@/components/following/FollowBtn.vue';
 export default {
   components:{
-    UserContent
+    UserContent,
+    FollowBtn
   },
   data(){
     return{
@@ -113,14 +106,6 @@ export default {
           justify-content: space-between;
           .nickname{
             font-size:28px;
-          }
-          .follow-btn{
-            display: flex;
-            background: rgb(142, 68, 173);
-            border-radius: 30px;
-            padding: 10px;
-            color: white;
-            
           }
         }
       }

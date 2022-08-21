@@ -1,8 +1,8 @@
 <template>
     <div class="header-nav">
-        <router-link v-for="i in nav" :key="i.text" class="nav-item" :to="i.href">
+        <div v-for="(i,idx) in nav" :key="idx" class="nav-item" :to="i.href" :class="{select:idx==active}" @click="movePage(idx,i.href)">
             {{ i.text }}
-        </router-link>
+        </div>
     </div>
 </template>
 
@@ -31,7 +31,17 @@ export default {
                     text: "맛집",
                     href: "/restaurant"
                 },
-            ]
+            ],
+            active: 0
+        }
+    },
+    methods:{
+        change(idx){
+            this.active = idx
+        },
+        movePage(idx,href){
+            this.change(idx)
+            this.$router.push(href)
         }
     }
 }
@@ -57,11 +67,11 @@ export default {
         text-decoration: none;
         color: black;
         padding-bottom: 10px;
-        border-bottom: 6px solid rgb(97, 2, 129);
+        // border-bottom: 6px solid rgb(97, 2, 129);
     }
 }
 
 .select{
-    border-bottom: 6px solid rgb(97, 2, 129);
+    border-bottom: 6px solid rgb(97, 2, 129) !important;
 }
 </style>

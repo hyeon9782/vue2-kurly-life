@@ -1,11 +1,11 @@
 <template>
-  <div class="header-container" v-if="true">
+  <div class="header-container" v-if="headerType != 'sub'">
     <div class="header">
       <div class="logo" @click="home">
         <img src="../../assets/kurly-logo.jpg" alt="logo" width="50px">
       </div>
       <div class="header-select">
-        <div v-for="(i, idx) in select" :key="idx" class="select-item" :class="{select: i == '컬리의 일상'}">
+        <div v-for="(i, idx) in select" :key="idx" class="select-item" :class="{select:idx==active}" @click="change(idx)">
           {{ i }}
         </div>
       </div>
@@ -35,15 +35,20 @@ export default {
   data(){
     return{
       select: [ "마켓컬리", "뷰티컬리", "컬리의 일상"],
-      changeColor: -1
+      active: 2
     }
   },
   methods:{
     home(){
       this.$router.push("/")
     },
-    change(index){
-      this.changeColor = index;
+    change(idx){
+      this.active = idx;
+    }
+  },
+  computed:{
+    headerType(){
+      return "type"
     }
   }
 }
@@ -52,6 +57,7 @@ export default {
 <style lang="scss" scoped>
 .header-container{
     position: fixed;
+    z-index: 9;
     .header{
       background: rgb(97, 2, 129);
       width: 480px;
@@ -89,7 +95,7 @@ export default {
 }
 
 .select{
-  background: white;
-  color: rgb(97, 2, 129);
+  background: white !important;
+  color: rgb(97, 2, 129) !important;
 }
 </style>

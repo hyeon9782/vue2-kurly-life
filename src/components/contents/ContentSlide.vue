@@ -9,17 +9,18 @@
           {{ slide.description }}
         </div>
       </div>
-      <div class="full-view">
+      <div class="full-view" @click="fullView(slide.category)" v-if="slide.category != 'product'">
         전체보기 >
       </div>
     </div>
-    <div class="slide-contents">
-        
+    <div class="slide-box">
+        <AppSlide />
     </div>
   </div>
 </template>
 
 <script>
+import AppSlide from '@/components/common/AppSlide.vue';
 export default {
     props:{
         slide:{
@@ -38,6 +39,33 @@ export default {
                 default: () => ('')
             }
         }
+    },
+    components:{
+        AppSlide
+    },
+    methods:{
+        fullView(category){
+            let param = ""
+            switch(category){
+                case 'recipe':
+                    param = 'recipe'
+                    break;
+                case 'recipeTheme':
+                    param = 'recipeTheme'
+                    break;
+                case 'lifehack': 
+                    param = 'lifehack'
+                    break;
+                case 'restaurant': 
+                    param = 'restaurant'
+                    break;
+                case 'product': 
+                    param = 'product'
+                    break;
+            }
+
+            this.$router.push(`/${param}`)
+        }
     }
 }
 </script>
@@ -45,6 +73,7 @@ export default {
 <style lang="scss" scoped>
 .contens-slide{
     padding: 10px;
+    margin: 15px 0 15px 0;
     .slide-head{
         display: flex;
         justify-content: space-between;
@@ -70,5 +99,8 @@ export default {
             align-items: center;
         }
     }
+    // .slide-box{
+    //     slide
+    // }
 }
 </style>

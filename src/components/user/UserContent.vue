@@ -1,7 +1,7 @@
 <template>
   <div class="user-content">
     <div class="user-content-tab">
-      <div class="tab" v-for="(i, idx) in tab" :key="idx">
+      <div class="tab" v-for="(i, idx) in tab" :key="idx" :class="{select:idx==active}" @click="changeCategory(idx)">
         {{ i }}
       </div>    
     </div>
@@ -18,6 +18,7 @@ export default {
   data(){
     return{
       tab: ["모두", "레시피", "생활팁", "맛집"],
+      active: 0,
       contents: [
         {
           url: "",
@@ -50,6 +51,12 @@ export default {
   methods:{
     detail(id){
       this.$router.push(`/content/${id}`)
+    },
+    change(idx){
+      this.active = idx
+    },
+    changeCategory(idx){
+      this.change(idx)
     }
   }
 }
@@ -77,5 +84,9 @@ export default {
       
     }
   }
+}
+.select{
+  border-bottom: 6px solid rgb(97, 2, 129) !important;
+  color: rgb(142, 68, 173) !important;
 }
 </style>

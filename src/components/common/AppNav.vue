@@ -48,17 +48,18 @@ export default {
 
 <style lang="scss" scoped>
 .nav-container{
-    background: white;
-    width: 480px;
-    height: 70px;
-    font-size: 48px;
-    position: fixed;
-    display: flex;
-    justify-content: space-around;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    margin: auto;
+  z-index: 9;
+  background: white;
+  width: 480px;
+  height: 70px;
+  font-size: 48px;
+  position: fixed;
+  display: flex;
+  justify-content: space-around;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
     .link{
       text-decoration: none;
       color:black;
