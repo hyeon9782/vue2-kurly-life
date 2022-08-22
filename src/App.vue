@@ -1,7 +1,8 @@
 <template>
   <div id="app">
     <div>
-      <AppHeader />
+      <AppHeader v-if="!type"/>
+      <SubHeader v-if="type"/>      
       <router-view/>
       <AppFooter />
       <AppNav />
@@ -11,6 +12,7 @@
 
 
 <script>
+import SubHeader from '@/components/common/SubHeader.vue';
 import AppHeader from '@/components/common/AppHeader.vue';
 import AppFooter from '@/components/common/AppFooter.vue';
 import AppNav from '@/components/common/AppNav.vue';
@@ -19,6 +21,12 @@ export default {
     AppHeader,
     AppFooter,
     AppNav,
+    SubHeader
+  },
+  computed:{
+    type(){
+      return this.$store.getters.headerType
+    }
   }
 }
 </script>

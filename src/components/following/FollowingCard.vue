@@ -30,7 +30,7 @@
       {{ item.title }}
     </div>
     <div class="content-box">
-      {{ item.content }}
+      {{ cuttingContent }}
     </div>
   </div>
 </template>
@@ -42,6 +42,11 @@ export default {
   components:{
     UserBox,
     AppImage
+  },
+  computed:{
+    cuttingContent(){
+      return this.item.content.substr(0,100) + '...'
+    } 
   },
   props:{
     item:{

@@ -7,8 +7,12 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
+    type: "",
   },
   getters: {
+    headerType(state){
+      return state.type === 'sub';
+    }
   },
   mutations: {
   },

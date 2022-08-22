@@ -1,6 +1,6 @@
 <template>
   <div class="user-container">
-    <SubHeader />
+    <SubHeader v-if="false"/>
     <div class="user-box">
       <div class="user-content">  
         <div class="user-img">

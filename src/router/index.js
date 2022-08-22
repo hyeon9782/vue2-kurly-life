@@ -1,5 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import store from '@/store/index'
+
 
 Vue.use(VueRouter)
 
@@ -75,6 +77,14 @@ const router = new VueRouter({
 })
 
 router.beforeEach((to, from, next) => {
+  
+  if (to.path === '/write'){
+    store.state['type'] = "sub" 
+  } else {
+    store.state['type'] = "main"
+  }
+
+
   // if (to.path == '/content/*' || to.path == '/coments/*' || to.path == '/write' || to.path == '/user-page' || to.path == '/my-scrap/*'){
   //   console.log("헤더 없에")
   // }

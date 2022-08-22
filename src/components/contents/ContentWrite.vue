@@ -1,6 +1,6 @@
 <template>
   <div class="content-write-page">
-    <SubHeader title="글쓰기" />
+    <SubHeader title="글쓰기" v-if="false"/>
     <div class="title-box">
       <div class="title-text">
         제목
@@ -17,7 +17,7 @@
         <input type="text" class="keyword-input" placeholder="키워드를 입력해주세요.">
       </div>
     </div>
-    <div class="ingredient-box" v-if="category == 'recipe'">
+    <div class="ingredient-box" v-if="this.$route.params.category == 'recipe'">
       <div class="ingredient-text">
         재료
       </div>
@@ -67,7 +67,6 @@ export default {
 
 <style lang="scss" scoped>
 .content-write-page{
-  margin-top:102px;
   width: 480px;
   .title-box{
     display: flex;
@@ -82,8 +81,9 @@ export default {
     }
     .title-input-box{
       width: 80%;
+      text-align: center;
       .title-input{
-        width: 100%;
+        width: 90%;
         height: 25px;
       }
     }
@@ -101,8 +101,9 @@ export default {
     }
     .keyword-input-box{
       width: 80%;
+      text-align: center;
       .keyword-input{
-        width: 100%;
+        width: 90%;
         height: 25px;
       }
     }
@@ -120,8 +121,9 @@ export default {
     }
     .ingredient-input-box{
       width: 80%;
+      text-align: center;
       .ingredient-input{
-        width: 100%;
+        width: 90%;
         height: 25px;
       }
     }
@@ -130,6 +132,7 @@ export default {
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: 20px;
     .upload-btn{
       background: rgb(249, 243, 255);
       color: rgb(142, 68, 173);

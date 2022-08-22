@@ -41,7 +41,7 @@ export default {
         },
         movePage(idx,href){
             this.change(idx)
-            this.$router.push(href)
+            this.$router.push(href).catch(err => err);
         }
     }
 }

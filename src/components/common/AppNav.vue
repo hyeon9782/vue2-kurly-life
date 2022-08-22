@@ -5,12 +5,12 @@
         menu
       </span>
     </div>
-    <router-link v-for="i in nav" :key="i.icon" :to="i.href" class="link">
+    <div v-for="(i, idx) in nav" :key="idx" class="link" @click="movePage(i.href)">
       <span class="material-symbols-outlined">
         {{ i.icon }}
       </span>
-    </router-link>
-    <div class="write" @click="showPanel">
+    </div>
+    <div class="write" @click="togglePanel">
       <span class="material-symbols-outlined">
         edit_square
       </span>
@@ -44,11 +44,15 @@ export default {
     }
   },
   methods:{
-    showPanel() {
-        this.$refs.panel.showPanel()
+    togglePanel() {
+      this.$refs.panel.showPanel()
     },
     write(){
       this.$router.push("/write")
+    },
+    movePage(href){
+      this.$refs.panel.hidePanel()
+      this.$router.push(href).catch(err => err);
     }
   }
 }

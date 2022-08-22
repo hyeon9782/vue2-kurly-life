@@ -55,11 +55,16 @@ export default {
             this.panel ? this.panel = false : this.panel = true
             this.initForm()
         },
+        hidePanel(){
+            this.panel = false
+            this.initForm()
+        },        
         initForm(){
             this.activeCategory = -1
             this.activeTheme = -1
             this.category = ""
             this.theme = ""
+            this.themeList = []
         },
         selectCategory(idx,category){
             this.activeCategory = idx
@@ -86,7 +91,7 @@ export default {
             }
             console.log(type)
             this.panel = false
-            this.$router.push({name:'write', params: {category: this.category, theme: this.theme }})
+            this.$router.push({name:'write', params: {category: this.category, theme: this.theme }}).catch(err => err);
         }
     },
 }

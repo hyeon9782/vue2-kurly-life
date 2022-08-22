@@ -1,6 +1,6 @@
 <template>
   <div class="recipe-container">
-    <ContentTheme category="recipe"/>
+    <ContentTheme category="recipe" select=""/>
     <div class="card-container">
       <template v-if="itemList == null || itemList.length == 0">
         <NoData />
@@ -20,8 +20,25 @@ export default {
     ContentTheme,
     ContentCard
   },
+  methods:{
+    searchRecipe(){
+      this.$store.dispatch('contents/searchContents',{
+        pageNum: "",
+        searchText: "",
+        category: "",
+        theme: "",
+        userId: "",
+      })
+    }
+  },
+  computed:{
+    recipeList(){
+      return this.$store.state.contents.recipeList
+    }
+  },
   data(){
     return{
+      selectTheme: "",
       itemList: [
         {
           url: "",
