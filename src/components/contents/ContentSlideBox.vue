@@ -14,36 +14,44 @@
       </div>
     </div>
     <div class="slide-box">
-        <ContentSlide :contents="contents" />
+        <ContentSlide :contents="contents" v-if="slide.category != 'recipeTheme'"/>
+        <ThemeSlide :theme="theme"  v-if="slide.category == 'recipeTheme'" />
     </div>
   </div>
 </template>
 
 <script>
+import ThemeSlide from '@/components/contents/ThemeSlide.vue';
 import ContentSlide from '@/components/contents/ContentSlide.vue';
 export default {
     data(){
         return{
+            theme:[""],
             contents: [
                 {
                     url: "",
-                    title: "테스트입니다 1"
+                    title: "테스트입니다 1",
+                    contentId: "312513",
                 },
                 {
                     url: "",
-                    title: "테스트입니다 2"
+                    title: "테스트입니다 2",
+                    contentId: "9y7433",
                 },
                 {
                     url: "",
-                    title: "테스트입니다 3"
+                    title: "테스트입니다 3",
+                    contentId: "319162",
                 },
                 {
                     url: "",
-                    title: "테스트입니다 4"
+                    title: "테스트입니다 4",
+                    contentId: "028532",
                 },
                 {
                     url: "",
-                    title: "테스트입니다 5"
+                    title: "테스트입니다 5",
+                    contentId: "956124",
                 },
             ]
         }
@@ -67,7 +75,8 @@ export default {
         }
     },
     components:{
-        ContentSlide
+        ContentSlide,
+        ThemeSlide
     },
     methods:{
         fullView(category){
@@ -77,7 +86,7 @@ export default {
                     param = 'recipe'
                     break;
                 case 'recipeTheme':
-                    param = 'recipeTheme'
+                    param = 'recipe'
                     break;
                 case 'lifehack': 
                     param = 'lifehack'

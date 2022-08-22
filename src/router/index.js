@@ -59,11 +59,6 @@ const routes = [
     name: 'userPage',
     component: () => import('@/components/user/UserPage.vue')
   },
-  // {
-  //   path: '/user-content/:id',
-  //   name: 'myScrap',
-  //   component: () => import('@/components/mypage/MyScrap.vue')
-  // },
   {
     path: '/my-scrap/:id',
     name: 'myScrap',
@@ -78,6 +73,13 @@ const router = new VueRouter({
   scrollBehavior () {
     return { x: 0, y: 0 }
   }
+})
+
+router.beforeEach((to, from, next) => {
+  if (to.path == '/content/*' || to.path == '/coments/*' || to.path == '/write' || to.path == '/user-page' || to.path == '/my-scrap/*'){
+    console.log("헤더 없에")
+  }
+  next()
 })
 
 export default router

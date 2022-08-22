@@ -1,6 +1,6 @@
 <template>
-  <div class="content-card-mini">
-    <div class="content-image" @click="detail">
+  <div class="content-card-mini" @click="detail">
+    <div class="content-image">
         <img :src="content.url" alt="메인 컨텐츠" width="100%">
     </div>
     <div class="content-title">
@@ -15,12 +15,11 @@ export default {
         content:{
             type: Object,
             default: () => ({}),
-            
         }
     },
     methods:{
         detail(){
-            this.$router.push(`/detail/${this.content.contentId}`)
+            this.$router.push(`/content/${this.content.contentId}`)
         }
     }
 }
