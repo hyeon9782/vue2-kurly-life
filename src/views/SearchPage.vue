@@ -1,7 +1,7 @@
 <template>
   <div class="search-container">
     <div class="input-box">
-      <input type="text" class="search-input" placeholder="검색어를 입력해주세요.">
+      <input type="text" class="search-input" placeholder="검색어를 입력해주세요." @keydown.enter="search" v-model="keywords">
     </div>
     <div class="recently-keywords">
       <div class="recently-keywords-title">
@@ -47,7 +47,13 @@ export default {
     return{
       recentlyKeywords: ["도시락", "하머스", "두부", "방울토마토", "토마토"],
       recommendKeywords: ["갈비탕", "불고기","삼겹살", "쭈꾸미", "스테이크", "그래놀라", "볶음밥", "돈까스"],
-      realTimeKeywords: ["양말", "현미밥", "시래기", "구찌", "김밥재료", "파예"]
+      realTimeKeywords: ["양말", "현미밥", "시래기", "구찌", "김밥재료", "파예"],
+      keywords: ""
+    }
+  },
+  methods:{
+    search(){
+      
     }
   }
 }

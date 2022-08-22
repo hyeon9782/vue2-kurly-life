@@ -6,4 +6,9 @@ function fetchProduct(payload){
     return posts.post('/api/product',payload)
 }
 
-export { fetchProduct }
+// 검색한 키워드가 포함된 상품을 가져오는 API
+function searchProduct(payload){
+    return posts.post('/api/search-product',payload)
+}
+
+export { fetchProduct, searchProduct }

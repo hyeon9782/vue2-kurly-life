@@ -51,7 +51,6 @@ const routes = [
   },
   {
     path: '/content/:id',
-    name: 'detail',
     component: () => import('@/components/contents/ContentDetail.vue')
   },
   {
@@ -76,9 +75,10 @@ const router = new VueRouter({
 })
 
 router.beforeEach((to, from, next) => {
-  if (to.path == '/content/*' || to.path == '/coments/*' || to.path == '/write' || to.path == '/user-page' || to.path == '/my-scrap/*'){
-    console.log("헤더 없에")
-  }
+  // if (to.path == '/content/*' || to.path == '/coments/*' || to.path == '/write' || to.path == '/user-page' || to.path == '/my-scrap/*'){
+  //   console.log("헤더 없에")
+  // }
+  // if(to.path == next.)
   next()
 })
 
