@@ -1,7 +1,7 @@
 <template>
   <div class="event-card">
     {{ eventImage }}
-    <img :src="eventImage" alt="이벤트 카드">
+    <!-- <img :src="eventImage" alt="이벤트 카드"> -->
   </div>
 </template>
 
@@ -18,9 +18,13 @@ export default {
 
 <style>
 .event-card{
-    z-index: 9;
-    width: 100%;
-    height: 300px;
-    background: lightgray;
+  width: 100%;
+  height: 200px;
+  background: lightgray;
+  color: gray;
+  font-size: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 </style>

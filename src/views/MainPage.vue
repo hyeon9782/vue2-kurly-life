@@ -1,17 +1,23 @@
 <template>
     <div class="main-container">
-      <EventSlide />
-      <ContentSlide  v-for="slide in slideList" :key="slide.category" :slide="slide"/>
+      <EventSlide :events="events"/>
+      <ContentSlideBox v-for="(slide, idx) in slides" :key="idx" :slide="slide"/>
     </div>
 </template>
 
 <script>
-import ContentSlide from '@/components/contents/ContentSlide.vue';
 import EventSlide from '@/components/event/EventSlide.vue';
+import ContentSlideBox from '@/components/contents/ContentSlideBox.vue';
 export default {
+  components:{
+    EventSlide,
+    ContentSlideBox
+  },
   data(){
     return{
-      slideList:[
+      events:["첫 글쓰기 1,000포인트 증정!","매 주 인기 멤버 3,000포인트 증정!"],
+      list:[1,2,3,4,5],
+      slides:[
         {
           title:"컬리의 인기 레시피",
           description: "이번 주 인기 있는 컬리의 식탁을 따라해봐요!",
@@ -40,10 +46,6 @@ export default {
       ],
     }
   },
-  components:{
-    ContentSlide,
-    EventSlide
-  }
 }
 </script>
 

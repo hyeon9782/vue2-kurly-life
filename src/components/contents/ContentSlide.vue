@@ -1,106 +1,51 @@
 <template>
-  <div class="contens-slide">
-    <div class="slide-head">
-      <div class="title-box">
-        <div class="title">
-          {{ slide.title }}
-        </div>
-        <div class="description">
-          {{ slide.description }}
-        </div>
-      </div>
-      <div class="full-view" @click="fullView(slide.category)" v-if="slide.category != 'product'">
-        전체보기 >
-      </div>
-    </div>
-    <div class="slide-box">
-        <AppSlide />
-    </div>
-  </div>
+  <hooper :settings="hooperSettings" class="content-slide">
+    <slide v-for="(content, idx) in contents" :key="idx">
+        <ContentCardMini :content="content" />
+    </slide>
+    <hooper-navigation slot="hooper-addons"></hooper-navigation>
+    <hooper-pagination slot="hooper-addons"></hooper-pagination>
+  </hooper>
 </template>
 
 <script>
-import AppSlide from '@/components/common/AppSlide.vue';
-export default {
-    props:{
-        slide:{
-            type: Object,
-            defualt: () => ({}),
-            title:{
-                type: String,
-                defualt: () => ('')
-            },
-            description:{
-                type: String,
-                default: () => ('')
-            },
-            category:{
-                type: String,
-                default: () => ('')
-            }
-        }
-    },
-    components:{
-        AppSlide
-    },
-    methods:{
-        fullView(category){
-            let param = ""
-            switch(category){
-                case 'recipe':
-                    param = 'recipe'
-                    break;
-                case 'recipeTheme':
-                    param = 'recipeTheme'
-                    break;
-                case 'lifehack': 
-                    param = 'lifehack'
-                    break;
-                case 'restaurant': 
-                    param = 'restaurant'
-                    break;
-                case 'product': 
-                    param = 'product'
-                    break;
-            }
+import ContentCardMini from '@/components/contents/ContentCardMini.vue';
+import {
+  Hooper,
+  Slide,
+  Pagination as HooperPagination,
+  Navigation as HooperNavigation
+} from 'hooper';
 
-            this.$router.push(`/${param}`)
-        }
+import 'hooper/dist/hooper.css';
+export default {
+  props:{
+    contents:{
+      type: Array,
+      default: () => ([])
     }
+  },
+  components: {
+    Hooper,
+    Slide,
+    HooperPagination,
+    HooperNavigation,
+    ContentCardMini
+  },
+  data(){
+    return{
+      hooperSettings: {
+        itemsToShow: 3,
+        centerMode: false
+      },
+    }
+  }
 }
 </script>
 
 <style lang="scss" scoped>
-.contens-slide{
-    padding: 10px;
-    margin: 15px 0 15px 0;
-    .slide-head{
-        display: flex;
-        justify-content: space-between;
-        .title-box{
-            width: 78%;
-            .title{
-                font-size:24px;
-                font-weight: bold;
-                padding: 5px;
-            }
-            .description{
-                font-size: 14px;
-                color: lightgray;
-                padding: 5px;
-            }
-        }
-        .full-view{
-            width: 22%;
-            font-size: 20px;
-            color: plum;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-    }
-    // .slide-box{
-    //     slide
-    // }
+.content-slide{
+    margin: 20px 0 20px 0;
+    
 }
 </style>

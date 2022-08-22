@@ -1,47 +1,46 @@
 <template>
-  <vueper-slides
-    class="no-shadow"
-    :visible-slides="2"
-    :slide-ratio="1 / 4"
-    :dragging-distance="70">
-    <vueper-slide v-for="i in 4" :key="i" :title="i.toString()" class="test">
-        <template v-slot:content>
-            <ContentCard />
-        </template>
-    </vueper-slide>
-  </vueper-slides>
+  <hooper :settings="hooperSettings">
+    <slide v-for="(content, idx) in contents" :key="idx">
+      {{ content }}
+    </slide>
+    <hooper-navigation slot="hooper-addons"></hooper-navigation>
+    <hooper-pagination slot="hooper-addons"></hooper-pagination>
+  </hooper>
 </template>
 
 <script>
-import { VueperSlides, VueperSlide } from 'vueperslides'
-import ContentCard from '@/components/contents/ContentCard.vue';
-import 'vueperslides/dist/vueperslides.css'
+import {
+  Hooper,
+  Slide,
+  Pagination as HooperPagination,
+  Navigation as HooperNavigation
+} from 'hooper';
+
+import 'hooper/dist/hooper.css';
 export default {
-  components: { VueperSlides, VueperSlide, ContentCard },
-  computed:{
-    itemList(){
-        return []
+  props:{
+    contents:{
+      type: Array,
+      default: () => ([])
     }
+  },
+  components: {
+    Hooper,
+    Slide,
+    HooperPagination,
+    HooperNavigation
   },
   data(){
     return{
-        slides: [
-            {
-                title: 'Slide #1',
-                content: 'Slide 1 content.'
-            },
-            {
-                title: 'Slide #2',
-                content: 'Slide 2 content.'
-            }
-        ]
+      hooperSettings: {
+        itemsToShow: 3,
+        centerMode: true
+      },
     }
   }
 }
 </script>
 
 <style>
-.test{
-    height: 500px;
-}
+
 </style>

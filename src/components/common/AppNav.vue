@@ -10,7 +10,7 @@
         {{ i.icon }}
       </span>
     </router-link>
-    <div class="write" @click="write">
+    <div class="write" @click="showPanel">
       <span class="material-symbols-outlined">
         edit_square
       </span>
@@ -19,7 +19,11 @@
 </template>
 
 <script>
+
 export default {
+  components:{
+    
+  },
   data(){
     return{
       nav: [
@@ -39,6 +43,19 @@ export default {
     }
   },
   methods:{
+    showPanel() {
+        const panel1Handle = this.$showPanel({
+        component : 'your-component-name',
+            props: {
+                //any data you want passed to your component
+            }
+        })
+
+        panel1Handle.promise
+        .then(result => {
+            console.log(result)
+        });
+    },
     write(){
       this.$router.push("/write")
     }

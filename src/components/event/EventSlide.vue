@@ -1,32 +1,31 @@
 <template>
-  <VueperSlides>
-    <VueperSlide v-for="(slide, idx) in list" :key="idx">
-      <EventCard :eventImage="slide" />
-    </VueperSlide>
-  </VueperSlides>
+  <hooper>
+    <slide v-for="(event, idx) in events" :key="idx">
+      <EventCard :eventImage="event"/>
+    </slide>
+    <navigation slot="hooper-addons"></navigation>
+    <hooper-pagination slot="hooper-addons"></hooper-pagination>
+  </hooper>
 </template>
 
 <script>
-import { VueperSlides, VueperSlide } from 'vueperslides'
-import 'vueperslides/dist/vueperslides.css'
+import { Hooper, Slide, Navigation, Pagination as HooperPagination, } from 'hooper';
+import 'hooper/dist/hooper.css';
 import EventCard from '@/components/event/EventCard.vue';
 export default {
-    components: { VueperSlides, VueperSlide, EventCard },
-    data(){
-        return{
-            slides: [
-                {
-                    title: 'Slide #1',
-                    content: 'Slide 1 content.'
-                },
-                {
-                    title: 'Slide #2',
-                    content: 'Slide 2 content.'
-                }
-            ],
-            list: [0,1,2]
-        }
+  props:{
+    events:{
+      type: Array,
+      default: () => ([])
     }
+  },
+  components: {
+    Hooper,
+    Slide,
+    Navigation,
+    HooperPagination,
+    EventCard
+  },
 }
 </script>
 
