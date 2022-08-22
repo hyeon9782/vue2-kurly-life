@@ -14,7 +14,7 @@
           {{ content.text }}
         </div>
         <div class="content-img" v-if="content.img != null && content.img != ''">
-          <AppImage :img="content.img"/>
+          <AppImage :img="content.img" v-if="false"/>
         </div>
       </div>
     </div>

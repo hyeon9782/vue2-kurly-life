@@ -23,22 +23,6 @@ function fetchContentsWithTheme(payload){
     return posts.post('/api/contents-theme', payload)
 }
 
-
-// 게시글을 업로드하는 API
-function uploadContents(payload){
-    return posts.post('/api/insert-contents', payload)
-}
-
-// 게시글을 수정하는 API
-function updateContents(payload){
-    return posts.post('/api/update-contents', payload)
-}
-
-// 게시글을 삭제하는 API
-function deleteContents(payload){
-    return posts.post('/api/delete-contents', payload)
-}
-
 // 게시글 상세페이지 API
 function detailContents(payload){
     return posts.post('/api/detail-contents',payload)
@@ -71,4 +55,4 @@ function removeScrap(payload){
     return posts.post('/api/remove-scrap',payload)
 }
 
-export { uploadContents, updateContents, fetchContentsMenu, deleteContents, detailContents, fetchContentsSearch, fetchContents, fetchContentsWithTheme, insertLike, removeLike, fetchScrap, insertScrap, removeScrap  }
+export { fetchContentsMenu, detailContents, fetchContentsSearch, fetchContents, fetchContentsWithTheme, insertLike, removeLike, fetchScrap, insertScrap, removeScrap  }

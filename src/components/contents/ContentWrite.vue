@@ -1,6 +1,5 @@
 <template>
   <div class="content-write-page">
-    <SubHeader title="글쓰기" v-if="false"/>
     <div class="title-box">
       <div class="title-text">
         제목
@@ -25,8 +24,12 @@
         <input type="text" class="ingredient-input" placeholder="재료를 입력해주세요.">
       </div>
     </div>
-    <AppTiptap v-if="false"/>
-    <EditorTiptap />
+    <div>  
+      <VueEditor v-model="content" />
+      <div>
+        {{ content }}
+      </div>
+    </div>
     <div class="upload-box">
       <div class="upload-btn" @click="storyUpload">
         스토리 공유하기
@@ -36,36 +39,46 @@
 </template>
 
 <script>
-import SubHeader from '@/components/common/SubHeader.vue';
-import AppTiptap from '@/components/common/AppTiptap.vue';
-import EditorTiptap from '@/components/common/EditorTiptap.vue';
+import { VueEditor } from "vue2-editor/dist/vue2-editor.core.js";
 export default {
   components:{
-    SubHeader,
-    AppTiptap,
-    EditorTiptap
+    VueEditor
   },
   data(){
     return{
-      category: "recipe"
+      content: null
     }
+  },
+  created(){
+    this.setEditorContent()
   },
   methods:{
     storyUpload(){
-      const formData = {
+      const bulletinData = {
         category: "",
         theme: "",
         title: "",
         keyword: "",
         ingredient: "",
+        
       }
-      console.log(formData);
+      console.log(bulletinData);
+      alert(this.content)
+    },
+    setEditorContent() {
+      this.content = "<h1>Html For Editor</h1>";
     }
   }
 }
 </script>
 
 <style lang="scss" scoped>
+@import "~vue2-editor/dist/vue2-editor.css";
+
+/* Import the Quill styles you want */
+@import '~quill/dist/quill.core.css';
+@import '~quill/dist/quill.bubble.css';
+@import '~quill/dist/quill.snow.css';
 .content-write-page{
   width: 480px;
   .title-box{
