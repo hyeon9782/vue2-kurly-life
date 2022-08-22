@@ -1,13 +1,6 @@
 <template>
   <div class="content-write-page">
-    <div class="write-header">
-      <span class="material-symbols-outlined back">
-        arrow_back_ios
-      </span>
-      <div class="header-title">
-        글쓰기
-      </div>
-    </div>
+    <SubHeader title="글쓰기" />
     <div class="title-box">
       <div class="title-text">
         제목
@@ -43,10 +36,12 @@
 </template>
 
 <script>
+import SubHeader from '@/components/common/SubHeader.vue';
 import AppTiptap from '@/components/common/AppTiptap.vue';
 import EditorTiptap from '@/components/common/EditorTiptap.vue';
 export default {
   components:{
+    SubHeader,
     AppTiptap,
     EditorTiptap
   },
@@ -74,20 +69,6 @@ export default {
 .content-write-page{
   margin-top:102px;
   width: 480px;
-  .write-header{
-    display: flex;
-    padding: 10px;
-    .back{
-      font-size: 30px;
-      color: rgb(190, 190, 190);
-      width: 40px;
-    }
-    .header-title{
-      font-size:24px;
-      margin-left: 170px;
-      width: 440px;
-    }
-  }
   .title-box{
     display: flex;
     padding: 10px;

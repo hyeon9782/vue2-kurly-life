@@ -1,15 +1,6 @@
 <template>
   <div class="my-scrap">
-    <div class="scrap-header">
-      <!-- <div class="back"> -->
-        <span class="material-symbols-outlined back">
-          arrow_back_ios
-        </span>
-      <!-- </div> -->
-      <div class="title">
-        스크랩
-      </div>
-    </div>
+    <SubHeader title="스크랩"/>
     <div>
       <UserContent />
     </div>
@@ -17,10 +8,12 @@
 </template>
 
 <script>
+import SubHeader from '@/components/common/SubHeader.vue';
 import UserContent from '@/components/user/UserContent.vue';
 export default {
     components:{
-        UserContent
+        UserContent,
+        SubHeader
     }
 }
 </script>

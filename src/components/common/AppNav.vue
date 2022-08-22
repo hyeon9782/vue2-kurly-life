@@ -15,14 +15,15 @@
         edit_square
       </span>
     </div>
+    <AppPanel ref="panel"/>
   </div>
 </template>
 
 <script>
-
+import AppPanel from '@/components/common/AppPanel.vue';
 export default {
   components:{
-    
+    AppPanel
   },
   data(){
     return{
@@ -39,22 +40,12 @@ export default {
           icon: "person",
           href: "/mypage"
         },
-      ]
+      ],
     }
   },
   methods:{
     showPanel() {
-        const panel1Handle = this.$showPanel({
-        component : 'your-component-name',
-            props: {
-                //any data you want passed to your component
-            }
-        })
-
-        panel1Handle.promise
-        .then(result => {
-            console.log(result)
-        });
+        this.$refs.panel.showPanel()
     },
     write(){
       this.$router.push("/write")

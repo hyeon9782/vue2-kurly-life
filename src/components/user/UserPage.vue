@@ -1,10 +1,6 @@
 <template>
   <div class="user-container">
-    <div class="user-header">
-      <span class="material-symbols-outlined back">
-        arrow_back_ios
-      </span>
-    </div>
+    <SubHeader />
     <div class="user-box">
       <div class="user-content">  
         <div class="user-img">
@@ -54,12 +50,14 @@
 </template>
 
 <script>
+import SubHeader from '@/components/common/SubHeader.vue';
 import UserContent from '@/components/user/UserContent.vue';
 import FollowBtn from '@/components/following/FollowBtn.vue';
 export default {
   components:{
     UserContent,
-    FollowBtn
+    FollowBtn,
+    SubHeader
   },
   data(){
     return{

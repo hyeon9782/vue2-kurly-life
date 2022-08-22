@@ -28,15 +28,16 @@ export default {
 <style lang="scss" scoped>
 .sub-header{
     display: flex;
-    padding: 10px;
+    padding: 20px;
     .back{
-        font-size: 30px;
+        font-size: 28px;
         color: rgb(190, 190, 190);
+        
     }
     .header-title{
-        display: flex;
-        justify-content: center;
-        align-items: center;
+        width: 85%;
+        font-size: 20px;
+        margin-left: 180px;
     }
 }
 </style>
