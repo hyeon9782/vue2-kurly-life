@@ -2,11 +2,11 @@
   <div class="restaurant-contaner">
     <ContentTheme category="restaurant" />
     <div class="card-container">
-      <template v-if="itemList == null || itemList.length == 0">
+      <template v-if="contents == null || contents.length == 0">
         <NoData />
       </template>
       <template v-else>
-        <ContentCard v-for="(item, idx) in itemList" :key="idx"  :item="item"/>
+        <ContentCard v-for="(content, idx) in contents" :key="idx"  :item="content"/>
       </template>
     </div>
   </div>
@@ -22,47 +22,23 @@ export default {
     ContentCard,
     NoData
   },
-  data(){
-    return{
-      itemList: [
-        {
-          url: "",
-          title: "테스트 제목입니다.",
-          likeNum: 3,
-          scrapNum: 6,
-        },
-        {
-          url: "",
-          title: "테스트 제목입니다.",
-          likeNum: 3,
-          scrapNum: 6,
-        },
-        {
-          url: "",
-          title: "테스트 제목입니다.",
-          likeNum: 3,
-          scrapNum: 6,
-        },
-        {
-          url: "",
-          title: "테스트 제목입니다.",
-          likeNum: 3,
-          scrapNum: 6,
-        },
-        {
-          url: "",
-          title: "테스트 제목입니다.",
-          likeNum: 3,
-          scrapNum: 6,
-        },
-        {
-          url: "",
-          title: "테스트 제목입니다.",
-          likeNum: 3,
-          scrapNum: 6,
-        },
-      ]
-      
+  methods:{
+    searchContents(){
+      this.$store.dispatch('contents/searchContents',{
+        pageNum: 1,
+        keyword: "",
+        category: "popular-restaurant",
+        theme: "",
+        userId: "",
+      })
+    }
+  },
+  created(){
+    this.searchContents()
+  },
+  computed:{
+    contents(){
+      return this.$store.state.contents.contents
     }
   }
 }

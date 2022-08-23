@@ -1,4 +1,4 @@
-import { fetchContents } from '@/api/contents'
+import { fetchContents, fetchScrapContents, fetchUserContents } from '@/api/contents'
 
 export default {
 
@@ -6,6 +6,7 @@ export default {
 
     state: () => ({
         contents: [],
+        scrapContents: [],
         keyword: "감자",
     }),
 
@@ -19,35 +20,83 @@ export default {
         },
     },
 
-    actuons: {
+    actions: {
         // 컨텐츠 리스트
-        async searchContents({ state, commit }, payload){
-            
-            const res = await fetchContents(payload)
+        async searchContents({ commit }, payload){
 
-            const contents = res.data.postList
+            try{
 
-            commit('updateState', {
-                contents
-            })
+                const res = await fetchContents(payload)
 
-            const pageLength = 1
+                console.log(res)
 
-            if (pageLength > 1) {
-                for (let page = 2; page <= pageLength; page += 1) {
-                    if (page > (payload.number / 12)) break
-                    const res = await fetchContents(payload)
-                    const contents = res.data.postList
-                    commit('updateState', {
-                        contents: [...state.movies, ...contents]
-                    })
-                }
+                const contents = res.data.data.postList
+
+                commit('updateState', {
+                    contents
+                })
+
+                console.log(contents)
+
+            }catch (err) {
+                console.log(err)
             }
+            
+            // const pageLength = 1
 
+            // if (pageLength > 1) {
+            //     for (let page = 2; page <= pageLength; page += 1) {
+            //         if (page > (payload.number / 12)) break
+            //         const res = await fetchContents(payload)
+            //         const contents = res.data.postList
+            //         commit('updateState', {
+            //             contents: [...state.movies, ...contents]
+            //         })
+            //     }
+            // }
 
+        },
 
+        // 사용자가 스크랩한 컨텐츠를 조회
+        async searchScrapContents({commit}, payload){
 
+            try{
+                const res = await fetchScrapContents(payload)
 
-        }
+                console.log(res)
+
+                const scrapContents = res.data.data.scrapItemList
+
+                commit('updateState', {
+                    scrapContents
+                })
+
+                console.log(scrapContents)
+
+            }catch (err){
+                console.log(err)
+            }
+        },
+
+        // 사용자가 작성한 컨텐츠를 조회 
+        async searchUserContents({commit}, payload){
+            try{
+                const res = await fetchUserContents(payload)
+
+                console.log(res)
+
+                const userContents = res.data.data.scrapItemList
+
+                commit('updateState', {
+                    userContents
+                })
+
+                console.log(userContents)
+
+            }catch (err){
+                console.log()
+            }
+        },
+
     }
 }

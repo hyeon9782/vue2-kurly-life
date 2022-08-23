@@ -5,7 +5,7 @@
         제목
       </div>
       <div class="title-input-box">
-        <input type="text" class="title-input" placeholder="제목을 입력해주세요.">
+        <input type="text" class="title-input" placeholder="제목을 입력해주세요." v-model="title">
       </div>
     </div>
     <div class="keyword-box">
@@ -13,20 +13,22 @@
         키워드
       </div>
       <div class="keyword-input-box">
-        <input type="text" class="keyword-input" placeholder="키워드를 입력해주세요.">
+        <input type="text" class="keyword-input" placeholder="키워드를 입력해주세요." v-model="keyword">
       </div>
     </div>
-    <div class="ingredient-box" v-if="this.$route.params.category == 'recipe'">
+    <div class="ingredient-box" v-if="true">
       <div class="ingredient-text">
         재료
       </div>
       <div class="ingredient-input-box">
-        <input type="text" class="ingredient-input" placeholder="재료를 입력해주세요.">
+        <input type="text" class="ingredient-input" placeholder="재료를 입력해주세요." v-model="localKeyword">
       </div>
     </div>
-    <div>  
-      <VueEditor v-model="content" />
-      <div>
+    <div class="content-box">  
+      <VueEditor useCustomImageHandler
+      @imageAdded="handleImageAdded"
+      v-model="htmlForEditor"/>
+      <div v-if="test">
         {{ content }}
       </div>
     </div>
@@ -40,33 +42,77 @@
 
 <script>
 import { VueEditor } from "vue2-editor/dist/vue2-editor.core.js";
+// import { insertContents } from "@/api/bulletin"
+import axios from "axios";
 export default {
   components:{
     VueEditor
   },
   data(){
     return{
-      content: null
+      title: "",
+      keyword: "",
+      keywords: [],
+      localKeyword: "",
+      localKeywords: [],
+      content: null,
+      test: "",
+      htmlForEditor: ""
     }
   },
-  created(){
-    this.setEditorContent()
-  },
+  // created(){
+  //   this.setEditorContent()
+  // },
   methods:{
     storyUpload(){
+      this.cutStr()
       const bulletinData = {
-        category: "",
-        theme: "",
-        title: "",
-        keyword: "",
-        ingredient: "",
-        
+        category: this.$route.params.category,
+        theme: this.$route.params.theme,
+        title: this.title,
+        keyword: this.keywords,
+        localKeyword: this.localKeywords,
+        content: this.content 
       }
+      this.test = this.content
       console.log(bulletinData);
-      alert(this.content)
+      console.log()
+      // insertContents(bulletinData)
+      
     },
     setEditorContent() {
-      this.content = "<h1>Html For Editor</h1>";
+      if(this.type == "321"){
+        this.title = ""
+        this.keyword = ""
+        this.localKeyword = ""
+        this.content = "<h1>Html For Editor</h1>";
+      }
+    },
+    cutStr(){
+      this.localKeywords = this.localKeyword.split("#").filter(Boolean)
+      this.keywords = this.keyword.split("#").filter(Boolean)
+    },
+    handleImageAdded: function(file, Editor, cursorLocation, resetUploader) {
+      // An example of using FormData
+      // NOTE: Your key could be different such as:
+      // formData.append('file', file)
+
+      var formData = new FormData();
+      formData.append("image", file);
+
+      axios({
+        url: "http://localhost:8080/api/upload",
+        method: "POST",
+        data: formData
+      })
+        .then(result => {
+          const url = result.data.url; // Get url from response
+          Editor.insertEmbed(cursorLocation, "image", url);
+          resetUploader();
+        })
+        .catch(err => {
+          console.log(err);
+        });
     }
   }
 }
@@ -83,13 +129,13 @@ export default {
   width: 480px;
   .title-box{
     display: flex;
-    padding: 10px;
+    padding: 0 20px 20px 20px;
     .title-text{
       width: 20%;
-      font-size: 24px;
+      font-size: 22px;
       color: lightgray;
       display: flex;
-      // justify-content: center;
+      justify-content: center;
       align-items: center;
     }
     .title-input-box{
@@ -103,13 +149,13 @@ export default {
   }
   .keyword-box{
     display: flex;
-    padding: 10px;
+    padding: 0 20px 20px 20px;
     .keyword-text{
       width: 20%;
-      font-size: 24px;
+      font-size: 22px;
       color: lightgray;
       display: flex;
-      // justify-content: center;
+      justify-content: center;
       align-items: center;
     }
     .keyword-input-box{
@@ -123,13 +169,13 @@ export default {
   }
   .ingredient-box{
     display: flex;
-    padding: 10px;
+    padding: 0 20px 20px 20px;
     .ingredient-text{
       width: 20%;
-      font-size: 24px;
+      font-size: 22px;
       color: lightgray;
       display: flex;
-      // justify-content: center;
+      justify-content: center;
       align-items: center;
     }
     .ingredient-input-box{
@@ -140,6 +186,10 @@ export default {
         height: 25px;
       }
     }
+  }
+
+  .content-box{
+    padding: 0px 20px 20px 20px;
   }
   .upload-box{
     display: flex;

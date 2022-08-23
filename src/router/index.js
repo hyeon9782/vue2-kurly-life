@@ -102,7 +102,7 @@ const router = new VueRouter({
 
 router.beforeEach((to, from, next) => {
   
-  if (to.path === '/contents/write' || to.path === `/contents/${to.params.id}` || to.path === `/user-page/${to.params.id}` || to.path === `/my-scrap/${to.params.id}` || to.path === `/comments/${to.params.id}` || to.path === `/reply/${to.params.id}`){
+  if (to.path === '/write' || to.path === `/contents/${to.params.id}` || to.path === `/user-page/${to.params.id}` || to.path === `/my-scrap/${to.params.id}` || to.path === `/comments/${to.params.id}` || to.path === `/reply/${to.params.id}`){
     store.state['type'] = "sub" 
     // alert(to.params)
     store.state['title'] = to.title

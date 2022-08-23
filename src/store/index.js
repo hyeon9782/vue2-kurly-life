@@ -1,7 +1,10 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import contents from '@/store/contents'
+import bulletin from '@/store/bulletin'
+import following from '@/store/following'
 import user from '@/store/user'
+
 
 Vue.use(Vuex)
 
@@ -24,6 +27,8 @@ export default new Vuex.Store({
   },
   modules: {
     contents,
+    following,
+    bulletin,
     user
   }
 })

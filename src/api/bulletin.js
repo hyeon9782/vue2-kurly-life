@@ -16,4 +16,9 @@ function deleteContents(contentsId){
     return posts.delete(`/api/post/${contentsId}`)
 }
 
-export { insertContents, updateContents, deleteContents }
+// 파일 업로드 API
+function uploadFile(payload){
+    return posts.post('/api/upload',payload)
+}
+
+export { insertContents, updateContents, deleteContents, uploadFile }

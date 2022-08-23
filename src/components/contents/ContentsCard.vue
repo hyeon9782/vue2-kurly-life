@@ -23,23 +23,23 @@ export default {
   props:{
     item:{
       type: Object,
-      default: () => ({}),
-      url:{
-        type: String,
-        default: () => ('')
-      },
-      title:{
-        type: String,
-        default: () => ('')
-      },
-      likeNum:{
-        type: Number,
-        default: () => (0)
-      },
-      scrapNum:{
-        type: Number,
-        default: () => (0)
-      }
+      default: () => ({})
+    },
+    url:{
+      type: String,
+      default: () => ('')
+    },
+    title:{
+      type: String,
+      default: () => ('')
+    },
+    likeNum:{
+      type: Number,
+      default: () => (0)
+    },
+    scrapNum:{
+      type: Number,
+      default: () => (0)
     }
   },
   methods:{

@@ -1,13 +1,13 @@
 <template>
   <div class="user-content">
     <div class="user-content-tab">
-      <div class="tab" v-for="(i, idx) in tab" :key="idx" :class="{select:idx==active}" @click="changeCategory(idx)">
-        {{ i }}
+      <div class="tab" v-for="(tab, idx) in tabs" :key="idx" :class="{select:idx==active}" @click="searchScrapContents(idx,tab.category)">
+        {{ tab.text }}
       </div>    
     </div>
     <div class="content-container">
-      <div class="content-card" v-for="content in contents" :key="content.id" @click="detail(content.id)">
-        <img :src="content.url" alt="img" width="100%">
+      <div class="content-card" v-for="scrapContent in scrapContents" :key="scrapContent.id" @click="detail(scrapContent.id)">
+        <img :src="scrapContent.url" alt="img" width="100%">
       </div>
     </div>
   </div>
@@ -17,36 +17,35 @@
 export default {
   data(){
     return{
-      tab: ["모두", "레시피", "생활팁", "맛집"],
+      tabs: [
+        {
+          text: "모두",
+          category: ""
+        },
+        {
+          text: "레시피",
+          category: "recipe"
+        },
+        {
+          text: "생활팁",
+          category: "tip"
+        },
+        {
+          text: "맛집",
+          category: "popular-restaurant"
+        },
+      ],
       active: 0,
-      contents: [
-        {
-          url: "",
-          title: "",
-          id: "1",
-        },
-        {
-          url: "",
-          title: "",
-          id: "2",
-        },
-        {
-          url: "",
-          title: "",
-          id: "3",
-        },
-        {
-          url: "",
-          title: "",
-          id: "4",
-        },
-        {
-          url: "",
-          title: "",
-          id: "5",
-        }
-      ]
+      categoryType: ""
     }
+  },
+  computed:{
+    scrapContents(){
+      return this.$store.state.contents.scrapContents
+    }
+  },
+  created(){
+    this.searchScrapContents()
   },
   methods:{
     detail(id){
@@ -55,8 +54,14 @@ export default {
     change(idx){
       this.active = idx
     },
-    changeCategory(idx){
-      this.change(idx)
+    searchScrapContents(idx,category){
+      this.change(idx ? idx : 0)
+      this.$store.dispatch('contents/searchScrapContents',{
+        pageNum: 0,
+        category: category ? category : "",
+        userId: 12
+      })
+      console.log(category)
     }
   }
 }

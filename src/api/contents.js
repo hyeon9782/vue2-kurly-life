@@ -3,8 +3,20 @@ import { posts } from './index'
 
 // 컨텐츠 목록을 가져오는 API
 function fetchContents(payload){
-    const { category } = payload
-    return posts.get(`/api/post/${category}`)
+    const { category, theme, keyword, pageNum } = payload
+    return posts.get(`/api/post/${category}?theme=${theme}&pageNum=${pageNum}&keyword=${keyword}`)
+}
+
+// 스크랩한 컨텐츠 목록을 가져오는 API
+function fetchScrapContents(payload){
+    const { category, userId, pageNum } = payload
+    return posts.get(`/api/scrap/${userId}?categoryType=${category}&page=${pageNum}`)
+}
+
+// 사용자가 작성한 컨텐츠 목록을 가져오는 API
+function fetchUserContents(payload){
+    const { category, userId, pageNum } = payload
+    return posts.get(`/api/user/${userId}?categoryType=${category}&page=${pageNum}`)
 }
 
 
@@ -47,10 +59,7 @@ function removeLike(payload){
 }
 
 
-// 스크랩한 컨텐츠를 조회하는 API
-function fetchScrap(payload){
-    return posts.post('/api/scrap',payload)
-}
+
 
 // 스크랩 하는 API
 function insertScrap(payload){
@@ -62,4 +71,4 @@ function removeScrap(payload){
     return posts.post('/api/remove-scrap',payload)
 }
 
-export { fetchContentsMenu, detailContents, fetchContentsSearch, fetchContents, fetchContentsWithTheme, insertLike, removeLike, fetchScrap, insertScrap, removeScrap  }
+export { fetchContentsMenu, detailContents, fetchContentsSearch, fetchContents, fetchContentsWithTheme, insertLike, removeLike, fetchScrapContents, insertScrap, removeScrap, fetchUserContents  }

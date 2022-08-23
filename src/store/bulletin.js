@@ -1,4 +1,4 @@
-import { user } from '@/api/user'
+import { insertContents } from '@/api/bulletin'
 
 export default {
 
@@ -13,9 +13,9 @@ export default {
     mutations: {},
 
     actions: {
-        // 회원 리스트
-        searchUserList(){
-            user()
+        // 게시글 작성
+        insertContents(){
+            insertContents()
         }
     }
 }
