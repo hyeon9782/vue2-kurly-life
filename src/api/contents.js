@@ -1,6 +1,16 @@
 // 컨텐츠 js 파일
 import { posts } from './index'
 
+// 컨텐츠 목록을 가져오는 API
+function fetchContents(payload){
+    const { category } = payload
+    return posts.get(`/api/post/${category}`)
+}
+
+
+
+
+
 // 메뉴 => 메인 페이지 API
 // 레시피, 생활팁, 맛집 인기 순으로 5개 씩 조회
 function fetchContentsMenu(payload){
@@ -13,10 +23,7 @@ function fetchContentsSearch(payload){
     return posts.post('/api/search-contents', payload)
 } 
 
-// 컨텐츠 목록을 가져오는 API
-function fetchContents(payload){
-    return posts.post('/api/contents',payload)
-}
+
 
 // 특정 테마의 컨텐츠를 가져오는 API
 function fetchContentsWithTheme(payload){

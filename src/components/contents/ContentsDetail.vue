@@ -36,9 +36,11 @@
       </div>
     </div>
     <div class="comments-section">
-      <div>
-        dd
-        <ContentsComment />
+      <div class="contents-box">
+        <CommentsItem v-for="i in 5" :key="i"/>
+      </div>
+      <div class="full-view" @click="commentsFullView">
+        전체 댓글 보기 >
       </div>
     </div>
     <div class="product-section">
@@ -60,8 +62,8 @@
 </template>
 
 <script>
+import CommentsItem from '@/components/comments/CommentsItem.vue';
 import ClickBox from '@/components/common/ClickBox.vue';
-import ContentsComment from '@/components/contents/ContentsComment.vue';
 import ContentsCard from '@/components/contents/ContentsCard.vue';
 import FollowBtn from '@/components/following/FollowBtn.vue';
 import UserBox from '@/components/user/UserBox.vue';
@@ -69,8 +71,14 @@ import AppImage from '@/components/common/AppImage.vue';
 import ProductSlide from '@/components/product/ProductSlide.vue';
 import ScrollUp from '@/components/common/ScrollUp.vue';
 export default {
+  methods:{
+    commentsFullView(){
+      this.$router.push(`/comments/${this.contentsId}`)
+    }
+  },
   data(){
     return{
+      contentsId: "214153",
       title: "할지니 인생에 할지니 인생에할지니 인생에할지니",
       img: "",
       nickname: "노른자없는계란",
@@ -170,8 +178,8 @@ export default {
     AppImage,
     ScrollUp,
     ContentsCard,
-    ContentsComment,
-    ClickBox
+    ClickBox,
+    CommentsItem
   }
 }
 </script>
@@ -221,9 +229,20 @@ export default {
   }
 
   .comments-section{
-    height: 500px;
+    padding: 20px;
     border-top: 8px solid lightgray;
     border-bottom: 8px solid lightgray;
+
+    .comments-box{
+
+    }
+
+    .full-view{
+      font-size: 24px;
+      text-align: center;
+      color: rgb(142, 68, 173);
+      padding-top: 20px;
+    }
   }
 
   .product-section{

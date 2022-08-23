@@ -20,6 +20,12 @@ export default {
     ContentsTheme,
     ContentsCard
   },
+  watch:{
+    '$route': 'test'
+  },
+  created(){
+    this.test()
+  },
   methods:{
     searchRecipe(){
       this.$store.dispatch('contents/searchContents',{
@@ -29,6 +35,9 @@ export default {
         theme: "",
         userId: "",
       })
+    },
+    test(){
+      this.$route.params.category
     }
   },
   computed:{
@@ -90,6 +99,7 @@ export default {
   .card-container{
     display: flex;
     flex-wrap: wrap;
+    justify-content: space-around;
   }
 }
 </style>

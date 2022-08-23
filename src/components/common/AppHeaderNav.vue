@@ -21,15 +21,15 @@ export default {
                 },
                 {
                     text: "레시피",
-                    href: "/contents"
+                    href: "/recipe"
                 },
                 {
                     text: "생활팁",
-                    href: "/contents"
+                    href: "/lifehack"
                 },
                 {
                     text: "맛집",
-                    href: "/contents"
+                    href: "/restaurant"
                 },
             ],
             active: 0
@@ -39,17 +39,9 @@ export default {
         change(idx){
             this.active = idx
         },
-        movePage(idx,nav){
+        movePage(idx,i){
             this.change(idx)
-            this.$router.push(
-                {
-                    path: nav.href,
-                    params: 
-                    {
-                        category: nav.text
-                    }
-                }
-            ).catch(err => err);
+            this.$router.push({path: i.href,params: {category: i.text }}).catch(err => err);
         }
     },
     // watch: {

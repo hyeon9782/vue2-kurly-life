@@ -16,10 +16,9 @@ export default {
             this.$router.back()
         }
     },
-    props:{
-        title:{
-            type: String,
-            default: () => ("")
+    computed:{
+        title(){
+            return this.$store.getters.headerTitle
         }
     }
 }

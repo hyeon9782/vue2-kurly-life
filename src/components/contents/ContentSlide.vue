@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import ContentCardMini from '@/components/contents/ContentCardMini.vue';
+import ContentCardMini from '@/components/contents/ContentsCardMini.vue';
 import {
   Hooper,
   Slide,

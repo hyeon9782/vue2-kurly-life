@@ -1,6 +1,6 @@
 <template>
   <div class="recipe-container">
-    <ContentTheme category="recipe" select=""/>
+    <ContentTheme category="recipe" theme=""/>
     <div class="card-container">
       <template v-if="itemList == null || itemList.length == 0">
         <NoData />
@@ -20,6 +20,9 @@ export default {
     ContentTheme,
     ContentCard
   },
+  created(){
+    alert(this.test)
+  },
   methods:{
     searchRecipe(){
       this.$store.dispatch('contents/searchContents',{
@@ -31,9 +34,14 @@ export default {
       })
     }
   },
+  comments:{
+    test(){
+      return this.$route.params.theme
+    }
+  },
   computed:{
     recipeList(){
-      return this.$store.state.contents.recipeList
+      return this.$store.state.contents.contents
     }
   },
   data(){
@@ -90,6 +98,7 @@ export default {
   .card-container{
     display: flex;
     flex-wrap: wrap;
+    justify-content: space-around;
   }
 }
 </style>

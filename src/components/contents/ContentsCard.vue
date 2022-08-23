@@ -6,36 +6,19 @@
     <div class="content-title">
       {{ item.title }}
     </div>
-    <div class="click-box">
-      <div class="like-box">
-        <div class="like-icon">
-          <span class="material-symbols-outlined">
-            thumb_up
-          </span>
-        </div>
-        <div class="like-no">
-          {{ item.likeNum }}
-        </div>
-      </div>
-      <div class="scrap-box">
-        <div class="scrap-icon">
-          <span class="material-symbols-outlined">
-            bookmarks
-          </span>
-        </div>
-        <div class="scrap-no">
-          {{ item.scrapNum }}
-        </div>
-      </div>
+    <div>
+      <ClickBox />
     </div>
   </div>
 </template>
 
 <script>
+import ClickBox from '@/components/common/ClickBox.vue';
 import AppImage from '@/components/common/AppImage.vue';
 export default {
   components:{
-    AppImage
+    AppImage,
+    ClickBox
   },
   props:{
     item:{
@@ -76,28 +59,8 @@ export default {
     height: 210px;
   }
   .content-title{
-    padding: 10px 0 10px 0;
+    padding: 10px 0 5px 0;
     font-size: 18px;
-  }
-  .click-box{
-    display: flex;
-    padding: 5px;
-    .like-box{
-      display: flex;
-      width: 50%;
-      .like-no{
-        margin-left: 10px;
-        margin-top: 3px;
-      }
-    }
-    .scrap-box{
-      display: flex;
-      width: 50%;
-      .scrap-no{
-        margin-left: 10px;
-        margin-top: 3px;
-      }
-    }
   }
 }
 

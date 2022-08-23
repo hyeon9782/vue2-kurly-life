@@ -24,6 +24,7 @@ export default {
   },
   methods:{
     movePage(theme){
+        alert(theme)
         this.$router.push({path:"/recipe", params: theme})
     }
   },

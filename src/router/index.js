@@ -22,7 +22,7 @@ const routes = [
     component: () => import('@/components/contents/ContentsDetail.vue'),
   },
   {
-    path: '/contents/write',
+    path: '/write',
     name: 'write',
     component: () => import('@/components/contents/ContentsWrite.vue'),
   },
@@ -31,6 +31,17 @@ const routes = [
     name: 'modify',
     component: () => import('@/components/contents/ContentsWrite.vue'),
   },
+  {
+    path: '/comments/:id',
+    name: 'comments',
+    component: () => import('@/components/comments/CommentsPage.vue'),
+  },
+  {
+    path: '/reply/:id',
+    name: 'reply',
+    component: () => import('@/components/comments/CommentsReply.vue'),
+  },
+
   {
     path: '/following',
     name: 'following',
@@ -46,39 +57,36 @@ const routes = [
     name: 'userPage',
     component: () => import('@/components/user/UserPage.vue')
   },
-
-
   {
     path: '*',
     name: 'notFound',
     component: () => import('@/views/NotFoundPage.vue')
   },
   
-  // {
-  //   path: '/recipe',
-  //   name: 'recipe',
-  //   component: () => import('@/views/RecipePage.vue')
-  // },
-  // {
-  //   path: '/lifehack',
-  //   name: 'lifehack',
-  //   component: () => import('@/views/LifehackPage.vue')
-  // },
-  // {
-  //   path: '/restaurant',
-  //   name: 'restaurant',
-  //   component: () => import('@/views/RestaurantPage.vue')
-  // },
+  {
+    path: '/recipe',
+    name: 'recipe',
+    component: () => import('@/views/RecipePage.vue')
+  },
+  {
+    path: '/lifehack',
+    name: 'lifehack',
+    component: () => import('@/views/LifehackPage.vue')
+  },
+  {
+    path: '/restaurant',
+    name: 'restaurant',
+    component: () => import('@/views/RestaurantPage.vue')
+  },
   {
     path: '/search',
     name: 'search',
     component: () => import('@/views/SearchPage.vue')
   },
-  
-  
   {
     path: '/my-scrap/:id',
     name: 'myScrap',
+    params:  '스크랩',
     component: () => import('@/components/mypage/MyScrap.vue')
   },
 ]
@@ -94,17 +102,13 @@ const router = new VueRouter({
 
 router.beforeEach((to, from, next) => {
   
-  if (to.path === '/contents/write' || to.path === `/contents/${to.params.id}`){
+  if (to.path === '/contents/write' || to.path === `/contents/${to.params.id}` || to.path === `/user-page/${to.params.id}` || to.path === `/my-scrap/${to.params.id}` || to.path === `/comments/${to.params.id}` || to.path === `/reply/${to.params.id}`){
     store.state['type'] = "sub" 
+    // alert(to.params)
+    store.state['title'] = to.title
   } else {
     store.state['type'] = "main"
   }
-
-
-  // if (to.path == '/content/*' || to.path == '/coments/*' || to.path == '/write' || to.path == '/user-page' || to.path == '/my-scrap/*'){
-  //   console.log("헤더 없에")
-  // }
-  // if(to.path == next.)
   next()
 })
 

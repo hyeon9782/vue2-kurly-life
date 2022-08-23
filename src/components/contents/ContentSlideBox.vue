@@ -14,19 +14,53 @@
       </div>
     </div>
     <div class="slide-box">
-        <ContentSlide :contents="contents" v-if="slide.category != 'recipeTheme'"/>
-        <ThemeSlide :theme="theme"  v-if="slide.category == 'recipeTheme'" />
+        <ContentSlide :contents="contents" v-if="slide.category !== 'recipeTheme' && slide.category !== 'product'"/>
+        <ThemeSlide :theme="theme"  v-if="slide.category === 'recipeTheme'" />
+        <ProductSlide :products="products"  v-if="slide.category === 'product'"/>
     </div>
   </div>
 </template>
 
 <script>
+import ProductSlide from '@/components/product/ProductSlide.vue';
 import ThemeSlide from '@/components/contents/ThemeSlide.vue';
 import ContentSlide from '@/components/contents/ContentSlide.vue';
 export default {
     data(){
         return{
             theme:[""],
+            products:[
+                {
+                    img: "",
+                    title: "이거 싸다 1",
+                    price: 635123,
+                    discount: 72
+                },
+                {
+                    img: "",
+                    title: "이거 싸다 2",
+                    price: 889124,
+                    discount: 53
+                },
+                {
+                    img: "",
+                    title: "이거 싸다 3",
+                    price: 255125,
+                    discount: 13
+                },
+                {
+                    img: "",
+                    title: "이거 싸다 4",
+                    price: 382525,
+                    discount: 5
+                },
+                {
+                    img: "",
+                    title: "이거 싸다 5",
+                    price: 789923,
+                    discount: 21
+                },
+            ],
             contents: [
                 {
                     url: "",
@@ -76,7 +110,8 @@ export default {
     },
     components:{
         ContentSlide,
-        ThemeSlide
+        ThemeSlide,
+        ProductSlide
     },
     methods:{
         fullView(category){
@@ -94,11 +129,8 @@ export default {
                 case 'restaurant': 
                     param = 'restaurant'
                     break;
-                case 'product': 
-                    param = 'product'
-                    break;
             }
-            this.$router.push(`/${param}`)
+            this.$router.push({name: 'contents', params: {category: param }})
         },
     }
 }

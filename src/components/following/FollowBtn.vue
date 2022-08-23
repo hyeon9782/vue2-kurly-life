@@ -1,17 +1,38 @@
 <template>
-  <div class="follow-btn">
-    <span class="material-symbols-outlined icon">
-      add
-    </span>
+  <div class="follow-btn" @click="toggleFollow">
+    <template v-if="text === '팔로우'">
+      <span class="material-symbols-outlined icon">
+        add
+      </span>
+    </template>
+    <template v-else>
+      <span class="material-symbols-outlined icon">
+        remove
+      </span>
+    </template>
     <div class="follow-text">
-      팔로우
+      {{ text }}
     </div>
   </div>
 </template>
 
 <script>
 export default {
-
+  data(){
+    return{
+      text: "팔로우"
+    }
+  },
+  methods:{
+    toggleFollow(){
+      if(this.text === "팔로우"){
+        this.text = "언팔로우"
+      }else{
+        this.text = "팔로우"
+      }
+      
+    }
+  }
 }
 </script>
 

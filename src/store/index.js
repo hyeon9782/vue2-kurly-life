@@ -8,10 +8,14 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     type: "",
+    title: ""
   },
   getters: {
     headerType(state){
       return state.type === 'sub';
+    },
+    headerTitle(state){
+      return state.title;
     }
   },
   mutations: {

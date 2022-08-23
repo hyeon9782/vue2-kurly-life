@@ -1,11 +1,13 @@
 <template>
   <div class="following-container">
-    <template v-if="itemList == null || itemList.length == 0">
-      <NoData />
-    </template>
-    <template v-else>
-      <FollowingCard v-for="(item, idx) in itemList" :key="idx" :item="item"/>
-    </template>
+    <div class="card-container">
+      <template v-if="itemList == null || itemList.length == 0">
+        <NoData />
+      </template>
+      <template v-else>
+        <FollowingCard v-for="(item, idx) in itemList" :key="idx" :item="item"/>
+      </template>
+    </div>
   </div>
 </template>
 
@@ -66,9 +68,14 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss" scoped>
 .following-container{
   margin-top:102px;
   width: 480px;
+  // .card-container{
+  //   display: flex;
+  //   flex-wrap: wrap;
+  //   justify-content: space-around;
+  // }
 }
 </style>

@@ -2,9 +2,10 @@
   <div id="app">
     <div>
       <AppHeader v-if="!type"/>
-      <SubHeader v-if="type"/>      
-      <router-view/>
-      <AppFooter />
+      <SubHeader v-if="type"/>
+      <div class="main-section">
+        <router-view/>
+      </div>      
       <AppNav />
     </div>
   </div>
@@ -14,12 +15,10 @@
 <script>
 import SubHeader from '@/components/common/SubHeader.vue';
 import AppHeader from '@/components/common/AppHeader.vue';
-import AppFooter from '@/components/common/AppFooter.vue';
 import AppNav from '@/components/common/AppNav.vue';
 export default {
   components:{
     AppHeader,
-    AppFooter,
     AppNav,
     SubHeader
   },
@@ -36,6 +35,10 @@ export default {
 
 body{
   font-family: 'Nanum Gothic', sans-serif;
+}
+
+.main-section{
+  margin-bottom: 70px;
 }
 
 

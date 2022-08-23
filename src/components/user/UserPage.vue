@@ -1,6 +1,5 @@
 <template>
   <div class="user-container">
-    <SubHeader v-if="false"/>
     <div class="user-box">
       <div class="user-content">  
         <div class="user-img">
@@ -50,14 +49,12 @@
 </template>
 
 <script>
-import SubHeader from '@/components/common/SubHeader.vue';
 import UserContent from '@/components/user/UserContent.vue';
 import FollowBtn from '@/components/following/FollowBtn.vue';
 export default {
   components:{
     UserContent,
     FollowBtn,
-    SubHeader
   },
   data(){
     return{
@@ -77,15 +74,8 @@ export default {
 <style lang="scss" scoped>
 .user-container{
   width: 480px;
-  margin-top:102px;
-  .user-header{
-    padding: 10px;
-    .back{
-      font-size: 30px;
-      color: rgb(190, 190, 190);
-    }
-  }
   .user-box{
+    padding: 0 15px 0 15px;
     .user-content{
       display: flex;
       padding: 10px;
@@ -103,7 +93,10 @@ export default {
           display: flex;
           justify-content: space-between;
           .nickname{
-            font-size:28px;
+            font-size:24px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
           }
         }
       }
@@ -156,8 +149,9 @@ export default {
       }
     }
     .introduce{
-      padding: 10px;
+      padding: 0 10px  0  10px;
       color: rgb(51, 51, 51);
+      line-height: 28px;
     }
   }
 }
