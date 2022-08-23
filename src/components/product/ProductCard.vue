@@ -1,13 +1,17 @@
 <template>
   <div class="product-card">
-    <div class="product-image">
-      <img :src="item.url" alt="재료">
+    <div class="product-image" style="background: url(product.img)">
+      <div class="cart-box" @click="shoppingCart">
+        <span class="material-symbols-outlined">
+          shopping_cart
+        </span>
+      </div>
     </div>
     <div class="product-title">
-      {{ item.title }}
+      {{ product.title }}
     </div>
     <div class="product-price">
-      {{ price }}원
+      {{ price }}
     </div>
   </div>
 </template>
@@ -15,14 +19,19 @@
 <script>
 export default {
   props:{
-    item:{
+    product:{
       type: Object,
       default: () => ({})
     }
   },
+  methods:{
+    shoppingCart(){
+      alert("장바구니에 추가했어요!")
+    }
+  },
   computed:{
     price(){
-      return this.item.price 
+      return this.product.price.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",") + "원" 
     }
   }
 }
@@ -30,20 +39,34 @@ export default {
 
 <style lang="scss" scoped>
 .product-card{
-  width: 150px;
-  // height: 250px;
-  background: lightgray;
+  width: 130px;
+  height: auto;
   .product-image{
-    width: 150px;
-    height: 150px;
+    position: relative;
+    width: 130px;
+    height: 160px;
+    background: lightgray !important;
+    .cart-box{
+      position: absolute;
+      right: 10px;
+      bottom: 10px;
+      background: rgba(119, 90, 126, 0.74);
+      color: white;
+      border-radius: 50%;
+      padding: 5px;
+    }
   }
   .product-title{
-    font-size: 18px;
+    font-size: 16px;
+    padding: 10px 0 10px 0;
   }
   .product-price{
-    font-size: 18px;
+    font-size: 16px;
     font-weight: bold;
   }
-
+}
+.shopping-cart{
+  color: purple !important;
+  background: white !important;
 }
 </style>

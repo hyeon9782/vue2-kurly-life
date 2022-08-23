@@ -1,7 +1,7 @@
 <template>
   <hooper :settings="hooperSettings" class="content-slide">
-    <slide v-for="(item, idx) in items" :key="idx">
-        <ProductCard :item="item" />
+    <slide v-for="(product, idx) in products" :key="idx">
+        <ProductCard :product="product" />
     </slide>
     <hooper-navigation slot="hooper-addons"></hooper-navigation>
     <hooper-pagination slot="hooper-addons"></hooper-pagination>
@@ -20,9 +20,9 @@ import {
 import 'hooper/dist/hooper.css';
 export default {
   props:{
-    items:{
+    products:{
       type: Array,
-      default: () => ([])
+      default: () => ([1,2,3])
     }
   },
   components: {
@@ -72,6 +72,7 @@ export default {
 <style lang="scss" scoped>
 .content-slide{
     margin: 20px 0 20px 0;
+    height: 230px;
     
 }
 </style>

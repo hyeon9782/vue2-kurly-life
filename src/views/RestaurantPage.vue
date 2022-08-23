@@ -13,8 +13,8 @@
 </template>
 
 <script>
-import ContentTheme from '@/components/contents/ContentTheme.vue';
-import ContentCard from '@/components/contents/ContentCard.vue';
+import ContentTheme from '@/components/contents/ContentsTheme.vue';
+import ContentCard from '@/components/contents/ContentsCard.vue';
 import NoData from '@/components/common/NoData.vue';
 export default {
   components:{

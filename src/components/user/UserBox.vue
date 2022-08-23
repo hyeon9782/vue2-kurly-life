@@ -3,7 +3,7 @@
     <div class="user-img-box">
       <img :src="img" alt="img">
     </div>
-    <div class="user-info">
+    <div class="user-info" :class="{nodate:uploadDate == ''}">
       <div class="nickname">
         {{ nickname }}
       </div>
@@ -23,11 +23,11 @@ export default {
     },
     nickname: {
       type: String,
-      default: () => ("노른자없는 계란")
+      default: () => ("노른자없는계란")
     },
     uploadDate: {
       type: String,
-      default: () => ("2022-08-20")
+      default: () => ("")
     },
     userId:{
       type: String,
@@ -37,6 +37,11 @@ export default {
   methods:{
     movePage(userId){
       this.$router.push(`/user-page/${userId}`)
+    }
+  },
+  data(){
+    return{
+
     }
   }
 }
@@ -50,16 +55,25 @@ export default {
     width: 50px;
     height: 50px;
     border-radius: 50%;
-    background: red;
+    background: lightgray;
     // margin: 10px;
   }
   .user-info{
+    color: gray;
+    padding-left: 10px;
+    font-size: 16px;
     .nickname{
-      padding: 5px 5px 5px 5px;
+      padding: 3px 0 8px 0;
+      
     }
     .upload-date{
-      padding-left: 5px;
     }
   }
+}
+
+.nodate{
+  display: flex;
+  align-items: center;
+  font-size: 20px !important;
 }
 </style>

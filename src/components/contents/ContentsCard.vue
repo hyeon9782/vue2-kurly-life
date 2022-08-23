@@ -62,7 +62,7 @@ export default {
   methods:{
     detail(){
       const id = "531326312"
-      this.$router.push(`/content/${id}`)
+      this.$router.push(`/contents/${id}`)
     }
   }
 }
@@ -70,13 +70,14 @@ export default {
 
 <style lang="scss" scoped>
 .content-card{
-  padding: 15px;
+  padding: 5px;
   .content-image{
     width: 210px;
     height: 210px;
   }
   .content-title{
-    padding: 5px;
+    padding: 10px 0 10px 0;
+    font-size: 18px;
   }
   .click-box{
     display: flex;

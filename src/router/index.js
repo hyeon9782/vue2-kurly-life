@@ -12,9 +12,24 @@ const routes = [
     component: () => import('@/views/MainPage.vue')
   },
   {
-    path: '*',
-    name: 'notFound',
-    component: () => import('@/views/NotFoundPage.vue')
+    path: '/contents',
+    name: 'contents',
+    component: () => import('@/views/ContentsPage.vue'),
+  },
+  {
+    path: '/contents/:id',
+    name: 'detail',
+    component: () => import('@/components/contents/ContentsDetail.vue'),
+  },
+  {
+    path: '/contents/write',
+    name: 'write',
+    component: () => import('@/components/contents/ContentsWrite.vue'),
+  },
+  {
+    path: '/contents/modify',
+    name: 'modify',
+    component: () => import('@/components/contents/ContentsWrite.vue'),
   },
   {
     path: '/following',
@@ -22,44 +37,45 @@ const routes = [
     component: () => import('@/views/FollowingPage.vue')
   },
   {
-    path: '/recipe',
-    name: 'recipe',
-    component: () => import('@/views/RecipePage.vue')
-  },
-  {
-    path: '/lifehack',
-    name: 'lifehack',
-    component: () => import('@/views/LifehackPage.vue')
-  },
-  {
-    path: '/restaurant',
-    name: 'restaurant',
-    component: () => import('@/views/RestaurantPage.vue')
-  },
-  {
-    path: '/search',
-    name: 'search',
-    component: () => import('@/views/SearchPage.vue')
-  },
-  {
     path: '/mypage',
     name: 'mypage',
     component: () => import('@/views/MyPage.vue')
-  },
-  {
-    path: '/write',
-    name: 'write',
-    component: () => import('@/components/contents/ContentWrite.vue')
-  },
-  {
-    path: '/content/:id',
-    component: () => import('@/components/contents/ContentDetail.vue')
   },
   {
     path: '/user-page/:id',
     name: 'userPage',
     component: () => import('@/components/user/UserPage.vue')
   },
+
+
+  {
+    path: '*',
+    name: 'notFound',
+    component: () => import('@/views/NotFoundPage.vue')
+  },
+  
+  // {
+  //   path: '/recipe',
+  //   name: 'recipe',
+  //   component: () => import('@/views/RecipePage.vue')
+  // },
+  // {
+  //   path: '/lifehack',
+  //   name: 'lifehack',
+  //   component: () => import('@/views/LifehackPage.vue')
+  // },
+  // {
+  //   path: '/restaurant',
+  //   name: 'restaurant',
+  //   component: () => import('@/views/RestaurantPage.vue')
+  // },
+  {
+    path: '/search',
+    name: 'search',
+    component: () => import('@/views/SearchPage.vue')
+  },
+  
+  
   {
     path: '/my-scrap/:id',
     name: 'myScrap',
@@ -78,7 +94,7 @@ const router = new VueRouter({
 
 router.beforeEach((to, from, next) => {
   
-  if (to.path === '/write'){
+  if (to.path === '/contents/write' || to.path === `/contents/${to.params.id}`){
     store.state['type'] = "sub" 
   } else {
     store.state['type'] = "main"

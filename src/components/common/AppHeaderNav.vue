@@ -1,6 +1,6 @@
 <template>
     <div class="header-nav">
-        <div v-for="(i,idx) in nav" :key="idx" class="nav-item" :to="i.href" :class="{select:idx==active}" @click="movePage(idx,i.href)">
+        <div v-for="(i,idx) in nav" :key="idx" class="nav-item" :to="i.href" :class="{select:idx==active}" @click="movePage(idx,i)">
             {{ i.text }}
         </div>
     </div>
@@ -21,15 +21,15 @@ export default {
                 },
                 {
                     text: "레시피",
-                    href: "/recipe"
+                    href: "/contents"
                 },
                 {
                     text: "생활팁",
-                    href: "/lifehack"
+                    href: "/contents"
                 },
                 {
                     text: "맛집",
-                    href: "/restaurant"
+                    href: "/contents"
                 },
             ],
             active: 0
@@ -39,11 +39,22 @@ export default {
         change(idx){
             this.active = idx
         },
-        movePage(idx,href){
+        movePage(idx,nav){
             this.change(idx)
-            this.$router.push(href).catch(err => err);
+            this.$router.push(
+                {
+                    path: nav.href,
+                    params: 
+                    {
+                        category: nav.text
+                    }
+                }
+            ).catch(err => err);
         }
-    }
+    },
+    // watch: {
+    //     '$route': 'change'
+    // }
 }
 </script>
 

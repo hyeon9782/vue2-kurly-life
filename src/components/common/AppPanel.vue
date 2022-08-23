@@ -91,7 +91,7 @@ export default {
             }
             console.log(type)
             this.panel = false
-            this.$router.push({name:'write', params: {category: this.category, theme: this.theme }}).catch(err => err);
+            this.$router.push({path:'/contents/write', params: {category: this.category, theme: this.theme }}).catch(err => err);
         }
     },
 }

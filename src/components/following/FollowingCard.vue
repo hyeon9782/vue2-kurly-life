@@ -81,13 +81,16 @@ export default {
       content:{
         type: String,
         default: () => ('')
+      },
+      contentsId:{
+        type: String,
+        default: () => ('351263')
       }
     }
   },
   methods:{
     detail(){
-      const id = "531326312"
-      this.$router.push(`/content/${id}`)
+      this.$router.push(`/contents/${this.item.contentsId}`)
     }
   }
 }

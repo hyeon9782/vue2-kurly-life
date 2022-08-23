@@ -1,29 +1,44 @@
 <template>
-  <div class="lifehack-container">
-    <ContentTheme category="lifehack"/>
+  <div class="contents-container">
+    <ContentsTheme :category="this.$route.params.category" select=""/>
     <div class="card-container">
       <template v-if="itemList == null || itemList.length == 0">
         <NoData />
       </template>
       <template v-else>
-        <ContentCard v-for="(item, idx) in itemList" :key="idx"  :item="item"/>
+        <ContentsCard v-for="(item, idx) in itemList" :key="idx"  :item="item"/>
       </template>
     </div>
   </div>
 </template>
 
 <script>
-import ContentTheme from '@/components/contents/ContentsTheme.vue';
-import ContentCard from '@/components/contents/ContentsCard.vue';
-import NoData from '@/components/common/NoData.vue';
+import ContentsTheme from '@/components/contents/ContentsTheme.vue';
+import ContentsCard from '@/components/contents/ContentsCard.vue';
 export default {
   components:{
-    ContentTheme,
-    ContentCard,
-    NoData
+    ContentsTheme,
+    ContentsCard
+  },
+  methods:{
+    searchRecipe(){
+      this.$store.dispatch('contents/searchContents',{
+        pageNum: "",
+        searchText: "",
+        category: "",
+        theme: "",
+        userId: "",
+      })
+    }
+  },
+  computed:{
+    recipeList(){
+      return this.$store.state.contents.recipeList
+    }
   },
   data(){
     return{
+      selectTheme: "",
       itemList: [
         {
           url: "",
@@ -62,13 +77,14 @@ export default {
           scrapNum: 6,
         },
       ]
+      
     }
   }
 }
 </script>
 
 <style lang="scss" scoped>
-.lifehack-container{
+.contents-container{
   margin-top:102px;
   width: 480px;
   .card-container{

@@ -1,16 +1,16 @@
 <template>
   <div class="theme-box">
-    <template v-if="category === 'recipe'">
+    <template v-if="category == '레시피'">
       <div v-for="(i, idx) in recipeTheme" :key="idx" class="theme-item" :class="{select:idx==active}" @click="searchContents(idx)">
           {{ i }}
       </div>
     </template>
-    <template v-if="category === 'lifehack'">
+    <template v-if="category === '생활팁'">
       <div v-for="(i, idx) in lifehackTheme" :key="idx" class="theme-item" :class="{select:idx==active}" @click="searchContents(idx)">
           {{ i }}
       </div>
     </template>
-    <template v-if="category === 'restaurant'">
+    <template v-if="category === '맛집'">
       <div v-for="(i, idx) in restaurantTheme" :key="idx" class="theme-item" :class="{select:idx==active}" @click="searchContents(idx)">
           {{ i }}
       </div>
