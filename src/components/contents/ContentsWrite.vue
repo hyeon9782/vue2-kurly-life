@@ -51,7 +51,7 @@
 <script>
 import { VueEditor } from "vue2-editor/dist/vue2-editor.core.js";
 // import { insertContents } from "@/api/bulletin"
-import axios from "axios";
+// import axios from "axios";
 export default {
   components:{
     VueEditor
@@ -101,28 +101,28 @@ export default {
       this.localKeywords = this.localKeyword.split("#").filter(Boolean)
       this.keywords = this.keyword.split("#").filter(Boolean)
     },
-    handleImageAdded: function(file, Editor, cursorLocation, resetUploader) {
-      // An example of using FormData
-      // NOTE: Your key could be different such as:
-      // formData.append('file', file)
+    // handleImageAdded: function(file, Editor, cursorLocation, resetUploader) {
+    //   // An example of using FormData
+    //   // NOTE: Your key could be different such as:
+    //   // formData.append('file', file)
 
-      var formData = new FormData();
-      formData.append("image", file);
+    //   var formData = new FormData();
+    //   formData.append("image", file);
 
-      axios({
-        url: "http://localhost:8080/api/upload",
-        method: "POST",
-        data: formData
-      })
-        .then(result => {
-          const url = result.data.url; // Get url from response
-          Editor.insertEmbed(cursorLocation, "image", url);
-          resetUploader();
-        })
-        .catch(err => {
-          console.log(err);
-        });
-    }
+    //   axios({
+    //     url: "http://localhost:8080/api/upload",
+    //     method: "POST",
+    //     data: formData
+    //   })
+    //     .then(result => {
+    //       const url = result.data.url; // Get url from response
+    //       Editor.insertEmbed(cursorLocation, "image", url);
+    //       resetUploader();
+    //     })
+    //     .catch(err => {
+    //       console.log(err);
+    //     });
+    // }
   }
 }
 </script>
