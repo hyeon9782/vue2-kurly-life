@@ -55,7 +55,7 @@ export default {
     search(){
       this.$store.dispatch('contents/searchContents',{
         pageNum: 1,
-        keyword: this.keyword,
+        keyword: this.keywords,
         category: "",
         theme: this.selectTheme,
       },

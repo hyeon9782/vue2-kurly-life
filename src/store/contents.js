@@ -68,8 +68,14 @@ export default {
                 const contents = res.data.data.postList
 
                 commit('updateState', {
-                    contents
+                    contents,
+                    keyword: payload.keyword
                 })
+
+                // state.keyword == payload.keyword
+                // alert(payload.keyword)
+
+                // alert(state.keyword)
 
             }catch (err) {
                 console.log(err)

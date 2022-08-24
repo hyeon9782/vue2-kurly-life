@@ -1,12 +1,12 @@
 <template>
     <div class="header-nav">
-        <template v-if="true">
+        <template v-if="test == '' || test == null">
             <div v-for="(i,idx) in nav" :key="idx" class="nav-item" :to="i.href" :class="{select:idx==active}" @click="movePage(idx,i)">
                 {{ i.text }}
             </div>
         </template>
-        <template v-if="false">
-            <div v-for="(i,idx) in navSearch" :key="idx" class="nav-item" :to="i.href" :class="{select:idx==active}" @click="movePage(idx,i)">
+        <template v-if="test != ''">
+            <div v-for="(i,idx) in navSearch" :key="idx" class="nav-item" :to="i.href" :class="{select:idx==active}" @click="movePage(idx,i.category,i.href)">
                 {{ i.text }}
             </div>
         </template>
@@ -16,7 +16,9 @@
 <script>
 export default {
     computed:{
-        
+        test(){
+            return this.$store.state.contents.keyword
+        }
     },
     data(){
         return{
@@ -45,23 +47,28 @@ export default {
             navSearch:[
                 {
                     text: "전체",
-                    href: "/"
+                    href: "/",
+                    category: "",
                 },
                 {
                     text: "스토어",
-                    href: "/store"
+                    href: "/store",
+                    category: ""
                 },
                 {
                     text: "레시피",
-                    href: "/recipe"
+                    href: "/recipe",
+                    category: "recipe"
                 },
                 {
                     text: "생활팁",
-                    href: "/lifehack"
+                    href: "/lifehack",
+                    category: "tip"
                 },
                 {
                     text: "맛집",
-                    href: "/restaurant"
+                    href: "/restaurant",
+                    category: "popular-restaurant"
                 },
             ],
             active: 0
@@ -74,6 +81,16 @@ export default {
         movePage(idx,i){
             this.change(idx)
             this.$router.push({path: i.href,params: {category: i.text }}).catch(err => err);
+        },
+        select(idx,category,path){
+            this.change(idx)
+            this.$store.dispatch('contents/searchContents',{
+                pageNum: 1,
+                keyword: this.keywords,
+                category, 
+                theme: this.selectTheme,
+            })
+            this.$router.push(path)
         }
     },
     // watch: {

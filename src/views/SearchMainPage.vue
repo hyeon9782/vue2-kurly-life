@@ -1,5 +1,8 @@
 <template>
     <div class="main-container">
+      <div class="test1">
+        {{ keyword }}로 검색한 결과들이에요!
+      </div>
       <ContentSlideBox :title="slides[4].title" :description="slides[4].description" :category="slides[4].category" :products="products" />
       <ContentSlideBox :title="slides[0].title" :description="slides[0].description" :category="slides[0].category" :contents="recipeContents" />
       <ContentSlideBox :title="slides[1].title" :description="slides[1].description" :category="slides[1].category" />
@@ -23,7 +26,7 @@ export default {
     this.getMain()
   },
   computed:{  
-    ...mapState('contents', ['recipeContents', 'lifehackContents', "restaurantContents", "products"])
+    ...mapState('contents', ['recipeContents', 'lifehackContents', "restaurantContents", "keyword"])
   },
   components:{
     ContentSlideBox
@@ -107,5 +110,10 @@ export default {
       }
     }
     
+}
+
+.test1{
+  font-size: 24px;
+  padding: 20px 10px;
 }
 </style>
