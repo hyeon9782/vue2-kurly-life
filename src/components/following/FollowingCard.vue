@@ -1,7 +1,7 @@
 <template>
   <div class="following-card">
     <UserBox :uploadDate="item.createdAt"/>
-    <div class="thumbnail-box" @click="detail">
+    <div class="thumbnail-box" @click="detail(item.idx)">
       <AppImage :img="item.thumbnail"/>
     </div>
     <div class="click-box">
@@ -59,8 +59,8 @@ export default {
     }
   },
   methods:{
-    detail(){
-      this.$router.push(`/contents/${this.item.idx}`)
+    detail(idx){
+      this.$router.push(`/contents/${idx}`)
     }
   }
 }

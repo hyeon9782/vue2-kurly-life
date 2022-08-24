@@ -4,7 +4,7 @@
         <img :src="content.url" alt="메인 컨텐츠" width="100%">
     </div>
     <div class="contents-title">
-      {{ content.title }}
+      {{ title }}
     </div>
   </div>
 </template>
@@ -20,6 +20,11 @@ export default {
     methods:{
         detail(idx){
             this.$router.push(`/contents/${idx}`)
+        }
+    },
+    computed:{
+        title(){
+            return this.content.title.substr(0,8) + '...'
         }
     }
 }

@@ -44,7 +44,7 @@ export default {
   },
   computed:{
     date(){
-      return this.uploadDate.substr(0,9)
+      return this.uploadDate.substr(0,10)
     }
   }
 }

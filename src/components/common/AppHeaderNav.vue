@@ -15,6 +15,9 @@
 
 <script>
 export default {
+    computed:{
+        
+    },
     data(){
         return{
             nav:[

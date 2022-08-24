@@ -59,6 +59,7 @@ export default {
     height: 210px;
   }
   .content-title{
+    width: 210px;
     padding: 10px 0 5px 0;
     font-size: 18px;
   }

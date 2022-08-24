@@ -20,6 +20,20 @@
           </div>
         </div>
       </tempalte>
+      <div>
+        <img src="https://post-phinf.pstatic.net/MjAxOTA4MDVfMTIy/MDAxNTY0OTQ3ODQ4OTQy.QXteWdrGfktqdVGNfqlQYYHzfm0mmAExpmHIkzHk35Ug.vwv-PcE5NyiKY4jsdLq48iZv8hNAKgBMl65YL2Zd8R0g.JPEG/mug_obj_201908050444109060.jpg?type=w1080" alt="dd" width="100%">
+        <div class="text-box">
+          사라다 빵을 만들어볼거에요~~ㅎㅎ 사라다 빵이 얼마나 맛있게요~~?
+        </div>
+        <img src="https://post-phinf.pstatic.net/MjAxOTA4MDVfMjIw/MDAxNTY0OTQ3ODQ3NjI2.mMEC0cDA5UxojMLqhJXnLEcPrsWUce7LofFhVsUp08kg.9_0I_5N2vRnjY_BR7dBxcNiTFA8Oz74rbWkgC6FCzM4g.JPEG/mug_obj_201908050444102089.jpg?type=w1080" alt="dd" width="100%">
+        <div class="text-box">
+          찐감자를 살짝 구워주시면 감칠맛이 살아납니다!
+        </div>
+        <img src="https://post-phinf.pstatic.net/MjAxOTA4MDVfMjQ5/MDAxNTY0OTQ3ODQ5OTg5.o2li_IA9NFYHbi38zf9mptFANwL1v36h8GZfLcfLicsg.b3qoZvxH8rhPmrkRCiV0Lfq6rPkI8g5Ag86zgSbJ674g.JPEG/mug_obj_201908050444103220.jpg?type=w1080" alt="dd" width="100%">
+        <div class="text-box">
+          오늘의 요리 찐감자를 구워서 만든 사라다 빵으로 만든 새우 감자 크로켓 완성!
+        </div>
+      </div>
     </div>
     <div class="click-section">
       <ClickBox />
@@ -205,7 +219,6 @@ export default {
   }
   .content-section{
     padding: 20px;
-    height: 800px;
   }
 
   .click-section{
@@ -267,5 +280,11 @@ export default {
   }
 
   
+}
+
+.text-box{
+  line-height: 25px;
+  font-size: 18px;
+  padding: 10px 0;
 }
 </style>
