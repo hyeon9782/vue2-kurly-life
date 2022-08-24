@@ -34,10 +34,6 @@ export default {
       type: String,
       default: () => ('')
     },
-    theme:{
-      type: String,
-      default: () => ('')
-    }
   },
   methods:{
     change(idx){
@@ -45,15 +41,15 @@ export default {
     },
     searchContents(idx, theme){
       this.change(idx)
+      if (theme == '전체') theme = ""
       console.log(theme)
-      alert(this.keyword)
-      // this.$store.dispatch('contents/searchContents',{
-      //   pageNum: 1,
-      //   searchText: this.keyword,
-      //   category: this.category,
-      //   theme,
-      //   userId: "",
-      // })
+      this.selectTheme = theme
+      this.$store.dispatch('contents/searchContents',{
+        pageNum: 1,
+        keyword: this.keyword,
+        category: this.category,
+        theme: this.selectTheme,
+      })
     }
   },
   computed:{

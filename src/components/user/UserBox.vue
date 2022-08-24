@@ -8,7 +8,7 @@
         {{ nickname }}
       </div>
       <div class="upload-date">
-        {{ uploadDate }}
+        {{ date }}
       </div>
     </div>
   </div>
@@ -34,14 +34,17 @@ export default {
       default: () => ("3123")
     }
   },
+  created(){
+    console.log(this.uploadDate)
+  },
   methods:{
     movePage(userId){
       this.$router.push(`/user-page/${userId}`)
     }
   },
-  data(){
-    return{
-
+  computed:{
+    date(){
+      return this.uploadDate.substr(0,9)
     }
   }
 }

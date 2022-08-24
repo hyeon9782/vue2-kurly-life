@@ -1,4 +1,4 @@
-import { fetchContents, fetchScrapContents, fetchUserContents } from '@/api/contents'
+import { fetchContents, fetchScrapContents, fetchUserContents, fetchMainContents  } from '@/api/contents'
 
 export default {
 
@@ -7,7 +7,12 @@ export default {
     state: () => ({
         contents: [],
         scrapContents: [],
-        keyword: "감자",
+        recipeContents: [],
+        lifehackContents: [],
+        restaurantContents: [],
+        products: [],
+        keyword: "",
+        pageNum: 0
     }),
 
     getters: {},
@@ -21,6 +26,36 @@ export default {
     },
 
     actions: {
+
+        // 메인 컨텐츠 리스트
+        async fetchMainContents({commit}, payload){
+            try{
+
+                const res = await fetchMainContents(payload)
+
+                console.log(res)
+
+                const recipeContents = res.data.data.postList.slice(0,5)
+                const lifehackContents = res.data.data.postList.slice(5,10)
+                const restaurantContents = res.data.data.postList.slice(10,15)
+
+                commit('updateState', {
+                    recipeContents,
+                    lifehackContents,
+                    restaurantContents,
+                    // products
+                })
+
+                console.log(recipeContents)
+                console.log(lifehackContents)
+                console.log(restaurantContents)
+
+            }catch (err){
+                console.log(err)
+            }
+        },
+
+
         // 컨텐츠 리스트
         async searchContents({ commit }, payload){
 
@@ -36,24 +71,9 @@ export default {
                     contents
                 })
 
-                console.log(contents)
-
             }catch (err) {
                 console.log(err)
             }
-            
-            // const pageLength = 1
-
-            // if (pageLength > 1) {
-            //     for (let page = 2; page <= pageLength; page += 1) {
-            //         if (page > (payload.number / 12)) break
-            //         const res = await fetchContents(payload)
-            //         const contents = res.data.postList
-            //         commit('updateState', {
-            //             contents: [...state.movies, ...contents]
-            //         })
-            //     }
-            // }
 
         },
 
@@ -79,7 +99,7 @@ export default {
         },
 
         // 사용자가 작성한 컨텐츠를 조회 
-        async searchUserContents({commit}, payload){
+        async searchUserContents({state,commit}, payload){
             try{
                 const res = await fetchUserContents(payload)
 
@@ -92,6 +112,26 @@ export default {
                 })
 
                 console.log(userContents)
+
+                state.pageNum = payload.pageNum
+
+                // if (page)
+
+
+
+
+                // const pageLength = 1
+
+            // if (pageLength > 1) {
+            //     for (let page = 2; page <= pageLength; page += 1) {
+            //         if (page > (payload.number / 12)) break
+            //         const res = await fetchContents(payload)
+            //         const contents = res.data.postList
+            //         commit('updateState', {
+            //             contents: [...state.movies, ...contents]
+            //         })
+            //     }
+            // }
 
             }catch (err){
                 console.log()

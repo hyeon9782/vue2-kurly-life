@@ -4,8 +4,8 @@
       <template v-if="itemList == null || itemList.length == 0">
         <NoData />
       </template>
-      <template v-else>
-        <FollowingCard v-for="(item, idx) in itemList" :key="idx" :item="item"/>
+      <template v-if="true">
+        <FollowingCard v-for="(followingContent, idx) in followingContents" :key="idx" :item="followingContents"/>
       </template>
     </div>
   </div>
@@ -18,6 +18,21 @@ export default {
   components:{
     FollowingCard,
     NoData
+  },
+  created(){
+    this.fetchFollowingContents()
+  },
+  methods:{
+    fetchFollowingContents(){
+      this.$store.dispatch('following/fetchFollowingContents',{
+        userId: 10
+      })
+    }
+  },
+  computed:{
+    followingContents(){
+      return this.$store.state.following.followingContents
+    }
   },
   data(){
     return{

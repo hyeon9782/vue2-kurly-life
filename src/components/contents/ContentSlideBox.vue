@@ -3,20 +3,20 @@
     <div class="slide-head">
       <div class="title-box">
         <div class="title">
-          {{ slide.title }}
+          {{ title }}
         </div>
         <div class="description">
-          {{ slide.description }}
+          {{ description }}
         </div>
       </div>
-      <div class="full-view" @click="fullView(slide.category)" v-if="slide.category != 'product'">
+      <div class="full-view" @click="fullView(category)" v-if="category != 'product'">
         전체보기 >
       </div>
     </div>
     <div class="slide-box">
-        <ContentSlide :contents="contents" v-if="slide.category !== 'recipeTheme' && slide.category !== 'product'"/>
-        <ThemeSlide :theme="theme"  v-if="slide.category === 'recipeTheme'" />
-        <ProductSlide :products="products"  v-if="slide.category === 'product'"/>
+        <ContentSlide :contents="contents" v-if="category !== 'recipeTheme' && category !== 'product'"/>
+        <ThemeSlide :theme="theme"  v-if="category === 'recipeTheme'" />
+        <ProductSlide :products="products"  v-if="category === 'product'"/>
     </div>
   </div>
 </template>
@@ -26,86 +26,31 @@ import ProductSlide from '@/components/product/ProductSlide.vue';
 import ThemeSlide from '@/components/contents/ThemeSlide.vue';
 import ContentSlide from '@/components/contents/ContentSlide.vue';
 export default {
+    props:{
+        title:{
+            type: String,
+            default: () => ("")
+        },
+        description:{
+            type: String,
+            default: () => ("")
+        },
+        category:{
+            type: String,
+            default: () => ("")
+        },
+        contents:{
+            type: Array,
+            default: () => ([])
+        },
+        products:{
+            type: Array,
+            default: () => ([])
+        }
+    },
     data(){
         return{
             theme:[""],
-            products:[
-                {
-                    img: "",
-                    title: "이거 싸다 1",
-                    price: 635123,
-                    discount: 72
-                },
-                {
-                    img: "",
-                    title: "이거 싸다 2",
-                    price: 889124,
-                    discount: 53
-                },
-                {
-                    img: "",
-                    title: "이거 싸다 3",
-                    price: 255125,
-                    discount: 13
-                },
-                {
-                    img: "",
-                    title: "이거 싸다 4",
-                    price: 382525,
-                    discount: 5
-                },
-                {
-                    img: "",
-                    title: "이거 싸다 5",
-                    price: 789923,
-                    discount: 21
-                },
-            ],
-            contents: [
-                {
-                    url: "",
-                    title: "테스트입니다 1",
-                    contentId: "312513",
-                },
-                {
-                    url: "",
-                    title: "테스트입니다 2",
-                    contentId: "9y7433",
-                },
-                {
-                    url: "",
-                    title: "테스트입니다 3",
-                    contentId: "319162",
-                },
-                {
-                    url: "",
-                    title: "테스트입니다 4",
-                    contentId: "028532",
-                },
-                {
-                    url: "",
-                    title: "테스트입니다 5",
-                    contentId: "956124",
-                },
-            ]
-        }
-    },
-    props:{
-        slide:{
-            type: Object,
-            defualt: () => ({}),
-            title:{
-                type: String,
-                defualt: () => ('')
-            },
-            description:{
-                type: String,
-                default: () => ('')
-            },
-            category:{
-                type: String,
-                default: () => ('')
-            }
         }
     },
     components:{
@@ -114,6 +59,7 @@ export default {
         ProductSlide
     },
     methods:{
+        
         fullView(category){
             let param = ""
             switch(category){
@@ -130,7 +76,7 @@ export default {
                     param = 'restaurant'
                     break;
             }
-            this.$router.push({name: 'contents', params: {category: param }})
+            this.$router.push({name: param, params: {category: param }})
         },
     }
 }

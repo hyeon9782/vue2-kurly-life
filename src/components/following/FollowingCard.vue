@@ -1,6 +1,6 @@
 <template>
   <div class="following-card">
-    <UserBox />
+    <UserBox :uploadDate="item.createdAt"/>
     <div class="thumbnail-box" @click="detail">
       <AppImage :img="item.thumbnail"/>
     </div>
@@ -12,7 +12,7 @@
           </span>
         </div>
         <div class="like-no">
-          {{ item.likeNum }}
+          {{ item.likeCount }}
         </div>
       </div>
       <div class="scrap-box">
@@ -22,7 +22,7 @@
           </span>
         </div>
         <div class="scrap-no">
-          {{ item.scrapNum }}
+          2
         </div>
       </div>
     </div>
@@ -30,7 +30,7 @@
       {{ item.title }}
     </div>
     <div class="content-box">
-      {{ cuttingContent }}
+      테스트 중인 글입니다@@@@@@@@@@@@@@@@@@@@@@@
     </div>
   </div>
 </template>
@@ -43,54 +43,24 @@ export default {
     UserBox,
     AppImage
   },
+  created(){
+    console.log(this.item.createdAt)
+    console.log(this.item)
+  },
   computed:{
-    cuttingContent(){
-      return this.item.content.substr(0,100) + '...'
-    } 
+    // cuttingContent(){
+    //   return this.item.content.substr(0,100) + '...'
+    // } 
   },
   props:{
     item:{
-      img:{
-        type: String,
-        default: () => ('')
-      },
-      nickname:{
-        type: String,
-        default: () => ('')
-      },
-      uploadDate:{
-        type: String,
-        default: () => ('')
-      },
-      thumbnail:{
-        type: String,
-        default: () => ('')
-      },
-      likeNum:{
-        type: Number,
-        default: () => (0)
-      },
-      scrapNum:{
-        type: Number,
-        default: () => (0)
-      },
-      title:{
-        type: String,
-        default: () => ('')
-      },
-      content:{
-        type: String,
-        default: () => ('')
-      },
-      contentsId:{
-        type: String,
-        default: () => ('351263')
-      }
+      type: Object,
+      default: () => ({})
     }
   },
   methods:{
     detail(){
-      this.$router.push(`/contents/${this.item.contentsId}`)
+      this.$router.push(`/contents/${this.item.idx}`)
     }
   }
 }

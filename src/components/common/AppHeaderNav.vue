@@ -1,8 +1,15 @@
 <template>
     <div class="header-nav">
-        <div v-for="(i,idx) in nav" :key="idx" class="nav-item" :to="i.href" :class="{select:idx==active}" @click="movePage(idx,i)">
-            {{ i.text }}
-        </div>
+        <template v-if="true">
+            <div v-for="(i,idx) in nav" :key="idx" class="nav-item" :to="i.href" :class="{select:idx==active}" @click="movePage(idx,i)">
+                {{ i.text }}
+            </div>
+        </template>
+        <template v-if="false">
+            <div v-for="(i,idx) in navSearch" :key="idx" class="nav-item" :to="i.href" :class="{select:idx==active}" @click="movePage(idx,i)">
+                {{ i.text }}
+            </div>
+        </template>
     </div>
 </template>
 
@@ -18,6 +25,28 @@ export default {
                 {
                     text: "팔로잉",
                     href: "/following"
+                },
+                {
+                    text: "레시피",
+                    href: "/recipe"
+                },
+                {
+                    text: "생활팁",
+                    href: "/lifehack"
+                },
+                {
+                    text: "맛집",
+                    href: "/restaurant"
+                },
+            ],
+            navSearch:[
+                {
+                    text: "전체",
+                    href: "/"
+                },
+                {
+                    text: "스토어",
+                    href: "/store"
                 },
                 {
                     text: "레시피",

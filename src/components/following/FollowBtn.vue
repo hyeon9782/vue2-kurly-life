@@ -17,20 +17,33 @@
 </template>
 
 <script>
+import { insertFollowing, deleteFollowing } from '@/api/following'
 export default {
   data(){
     return{
       text: "팔로우"
     }
   },
+  props:{
+    targetAccountIdx:{
+      type: Number,
+      default: () => (0) 
+    }
+  },
   methods:{
     toggleFollow(){
+      const payload = {
+        accountIdx: 12,
+        targetAccountIdx: this.targetAccountIdx
+      }
       if(this.text === "팔로우"){
         this.text = "언팔로우"
+        deleteFollowing(payload)
+        
       }else{
         this.text = "팔로우"
+        insertFollowing(payload)
       }
-      
     }
   }
 }

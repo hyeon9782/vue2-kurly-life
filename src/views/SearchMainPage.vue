@@ -1,16 +1,14 @@
 <template>
     <div class="main-container">
-      <EventSlide :events="events"/>
+      <ContentSlideBox :title="slides[4].title" :description="slides[4].description" :category="slides[4].category" :products="products" />
       <ContentSlideBox :title="slides[0].title" :description="slides[0].description" :category="slides[0].category" :contents="recipeContents" />
       <ContentSlideBox :title="slides[1].title" :description="slides[1].description" :category="slides[1].category" />
       <ContentSlideBox :title="slides[2].title" :description="slides[2].description" :category="slides[2].category" :contents="lifehackContents" />
       <ContentSlideBox :title="slides[3].title" :description="slides[3].description" :category="slides[3].category" :contents="restaurantContents" />
-      <ContentSlideBox :title="slides[4].title" :description="slides[4].description" :category="slides[4].category" :products="products" />
     </div>
 </template>
 
 <script>
-import EventSlide from '@/components/event/EventSlide.vue';
 import ContentSlideBox from '@/components/contents/ContentSlideBox.vue';
 import { mapState } from "vuex";
 export default {
@@ -28,7 +26,6 @@ export default {
     ...mapState('contents', ['recipeContents', 'lifehackContents', "restaurantContents", "products"])
   },
   components:{
-    EventSlide,
     ContentSlideBox
   },
   data(){

@@ -24,6 +24,14 @@
         <input type="text" class="ingredient-input" placeholder="재료를 입력해주세요." v-model="localKeyword">
       </div>
     </div>
+    <div class="thumbnail-box">
+      <div class="thumbnail-text">
+        썸네일
+      </div>
+      <div class="thumbnail-file-box">
+        <input type="file" class="thumbnail-input">
+      </div>
+    </div>
     <div class="content-box">  
       <VueEditor useCustomImageHandler
       @imageAdded="handleImageAdded"
@@ -76,7 +84,8 @@ export default {
       }
       this.test = this.content
       console.log(bulletinData);
-      console.log()
+      alert("업로드 완료!")
+      this.$router.back()
       // insertContents(bulletinData)
       
     },
@@ -186,6 +195,28 @@ export default {
         height: 25px;
       }
     }
+  }
+
+  .thumbnail-box{
+    display: flex;
+    padding: 0 20px 20px 20px;
+    .thumbnail-text{
+      width: 20%;
+      font-size: 22px;
+      color: lightgray;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .thumbnail-file-box{
+      width: 80%;
+      text-align: center;
+      .thumbnail-input{
+        width: 90%;
+        height: 25px;
+      }
+    }
+    
   }
 
   .content-box{

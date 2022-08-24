@@ -53,8 +53,14 @@ export default {
   },
   methods:{
     search(){
-      
-    }
+      this.$store.dispatch('contents/searchContents',{
+        pageNum: 1,
+        keyword: this.keyword,
+        category: "",
+        theme: this.selectTheme,
+      },
+      this.$router.push('/search/main')
+    )}
   }
 }
 </script>

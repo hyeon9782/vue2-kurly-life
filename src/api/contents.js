@@ -19,15 +19,16 @@ function fetchUserContents(payload){
     return posts.get(`/api/user/${userId}?categoryType=${category}&page=${pageNum}`)
 }
 
-
-
-
-
-// 메뉴 => 메인 페이지 API
-// 레시피, 생활팁, 맛집 인기 순으로 5개 씩 조회
-function fetchContentsMenu(payload){
-    return posts.post('/api/contents-main',payload)
+// 메뉴 => 메인 페이지 API (레시피, 생활팁, 맛집 인기 순으로 5개 씩 조회)
+function fetchMainContents(payload){
+    const { accountIdx } = payload
+    return posts.get(`/api/post?${accountIdx}`)
 }
+
+
+
+
+
 
 // 검색 => 메인 페이지 API
 // 레시피, 생활팁, 맛집 검색한 키워드에 해당되는 컨텐츠 인기 순으로 5개씩 조회
@@ -71,4 +72,4 @@ function removeScrap(payload){
     return posts.post('/api/remove-scrap',payload)
 }
 
-export { fetchContentsMenu, detailContents, fetchContentsSearch, fetchContents, fetchContentsWithTheme, insertLike, removeLike, fetchScrapContents, insertScrap, removeScrap, fetchUserContents  }
+export { fetchMainContents, detailContents, fetchContentsSearch, fetchContents, fetchContentsWithTheme, insertLike, removeLike, fetchScrapContents, insertScrap, removeScrap, fetchUserContents  }

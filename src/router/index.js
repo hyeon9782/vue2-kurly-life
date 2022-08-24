@@ -41,7 +41,11 @@ const routes = [
     name: 'reply',
     component: () => import('@/components/comments/CommentsReply.vue'),
   },
-
+  {
+    path: '/search/main',
+    name: 'searchMain',
+    component: () => import('@/views/SearchMainPage.vue'),
+  },
   {
     path: '/following',
     name: 'following',
@@ -82,6 +86,11 @@ const routes = [
     path: '/search',
     name: 'search',
     component: () => import('@/views/SearchPage.vue')
+  },
+  {
+    path: '/store',
+    name: 'store',
+    component: () => import('@/views/StorePage.vue')
   },
   {
     path: '/my-scrap/:id',

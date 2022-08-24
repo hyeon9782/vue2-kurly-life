@@ -3,15 +3,17 @@ import { posts } from './index'
 
 function fetchFollowingContents(payload){
     const { userId } = payload
-    return posts.get(`/api/select/${userId}`)
+    return posts.get(`/api/follow/${userId}`)
 }
 
 function insertFollowing(payload){
-    return posts.post('/api/insert-follow',payload)
+    const { accountIdx } = payload
+    return posts.post(`/api/follow/${accountIdx}`,payload)
 }
 
 function deleteFollowing(payload){
-    return posts.post('/api/insert-follow01',payload)
+    const { accountIdx } = payload
+    return posts.post(`/api/follow/${accountIdx}`,payload)
 }
 
 export { fetchFollowingContents, insertFollowing, deleteFollowing }
