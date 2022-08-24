@@ -6,7 +6,7 @@
             </div>
         </template>
         <template v-if="test != ''">
-            <div v-for="(i,idx) in navSearch" :key="idx" class="nav-item" :to="i.href" :class="{select:idx==active}" @click="movePage(idx,i.category,i.href)">
+            <div v-for="(i,idx) in navSearch" :key="idx" class="nav-item" :to="i.href" :class="{select:idx==active}" @click="select(idx,i.category,i.href)">
                 {{ i.text }}
             </div>
         </template>
