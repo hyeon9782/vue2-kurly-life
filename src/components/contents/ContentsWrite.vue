@@ -33,8 +33,7 @@
       </div>
     </div>
     <div class="content-box">  
-      <VueEditor useCustomImageHandler
-      @imageAdded="handleImageAdded"
+      <VueEditor 
       v-model="htmlForEditor"/>
       <div v-if="test">
         {{ content }}
